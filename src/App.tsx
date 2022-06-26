@@ -1,8 +1,9 @@
 import './assets/css/index.css';
+import { Router } from './routes';
 
 function App() {
   return (
-    <h1>Hola Mundo</h1>
+    <Router />
   );
 }
 
