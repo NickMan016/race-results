@@ -1,0 +1,138 @@
+/* ------------------------------ */
+/* ---------- Contenido --------- */
+/* ------------------------------ */
+
+.contenedor {
+    margin: 40px auto;
+    width: 90%;
+    max-width: 1000px;
+}
+
+.seccion {
+    margin: 40px 0;
+    padding: 20px;
+    width: 100%;
+    background: #fff;
+    box-shadow: 2px 2px 6px #505050;
+    border-radius: 5px;
+}
+
+.seccion .titulo__seccion,
+.seccion .info__seccion {
+    display: block;
+}
+
+.seccion .info__seccion {
+    margin-top: .5rem;
+    display: flex;
+    align-items: center;
+}
+
+.seccion .info__seccion .flag {
+    display: block;
+    margin: 0 .5rem;
+    height: .7rem;
+}
+
+.seccion .titulo__seccion {
+    font-size: 1.75rem;
+    font-weight: bold;
+    /* color: #EE0000; */
+}
+
+/* ------------------------------ */
+/* ------------ Tabla ----------- */
+/* ------------------------------ */
+
+.seccion .tabla {
+    width: 100%;
+    margin-top: .5rem;
+    border-collapse: collapse;
+    text-align: left;
+    /* border-radius: 5px 5px 0 0; */
+    border-radius: 5px 3px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.seccion .tabla .thead {
+    color: #fff;
+    background: #EE0000;
+}
+
+.seccion .tabla th {
+    font-size: 1.1rem;
+}
+
+.seccion .tabla th,
+.seccion .tabla td {
+    padding: 12px;
+}
+
+.seccion .tabla th.center,
+.seccion .tabla td.center {
+    text-align: center;
+}
+
+.seccion svg {
+    display: inline-block;
+    margin: 0 .5rem;
+}
+
+.seccion .fastest__lap{
+    color: #9600bb;
+}
+
+.seccion .finished{
+    color: #16c000;
+}
+
+.seccion .dnf{
+    color: #EE0000;
+}
+
+.seccion .tabla tbody tr:nth-of-type(even) {
+    background: #00000033;
+}
+
+.seccion .tabla tbody tr:last-of-type {
+    border-bottom: 3px #EE0000 solid;
+}
+
+.seccion .tabla tbody tr:hover {
+    background: #00000059;
+}
+
+/* ------------------------------ */
+/* ---------- Skeleton ---------- */
+/* ------------------------------ */
+
+.skeleton {
+    animation: skeleton-loading 1.3s linear infinite alternate;
+}
+
+.skeleton__texto {
+    width: 100%;
+    height: 1.25rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+.skeleton__titulo {
+    width: 30%;
+    height: 1.7rem;
+}
+
+.skeleton__cuerpo {
+    height: 300px;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: #c0c0c0;
+    }
+
+    100% {
+        background-color: #d8d8d8;
+    }
+}
