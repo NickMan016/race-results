@@ -28,6 +28,10 @@
     align-items: center;
 }
 
+.seccion .info__seccion span {
+    margin-right: 1rem;
+}
+
 .seccion .info__seccion .flag {
     display: block;
     margin: 0 .5rem;
@@ -76,7 +80,7 @@
 
 .seccion svg {
     display: inline-block;
-    margin: 0 .5rem;
+    margin-right: .5rem;
 }
 
 .seccion .fastest__lap{
