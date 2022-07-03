@@ -5,11 +5,11 @@ import { Router } from './routes';
 
 function App() {
   return (
-    <F1Provider>
-      <CountriesProvider>
+    <CountriesProvider>
+      <F1Provider>
         <Router />
-      </CountriesProvider>
-    </F1Provider>
+      </F1Provider>
+    </CountriesProvider>
   );
 }
 
