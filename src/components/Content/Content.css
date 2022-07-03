@@ -3,9 +3,28 @@
 /* ------------------------------ */
 
 .contenedor {
-    margin: 40px auto;
+    margin: auto;
     width: 90%;
-    max-width: 1000px;
+    max-width: 1200px;
+}
+
+.grid__contenedor {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid__seccion {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.principal__contenedor {
+    grid-column: span 2;
+}
+
+.sidebar__contenedor {
+    grid-column: span 1;
 }
 
 .seccion {
@@ -22,10 +41,45 @@
     display: block;
 }
 
+.seccion .titulo__seccion {
+    margin-bottom: .25rem;
+}
+
 .seccion .info__seccion {
     margin-top: .5rem;
     display: flex;
     align-items: center;
+}
+
+.seccion svg {
+    display: inline-block;
+    margin-right: .5rem;
+}
+
+.seccion .icon__flag {
+    height: 1rem;
+    margin-right: .5rem;
+}
+
+.seccion svg.yellow {
+    color: #e4e000;
+}
+
+.seccion svg.red {
+    color: #EE0000;
+}
+
+.seccion svg.green {
+    color: #16c000;
+}
+
+.seccion svg.blue {
+    color: #0048e4;
+}
+
+.seccion .image__circuit {
+    width: 400px;
+    height: 100%;
 }
 
 .seccion .info__seccion span {
@@ -76,11 +130,6 @@
 .seccion .tabla th.center,
 .seccion .tabla td.center {
     text-align: center;
-}
-
-.seccion svg {
-    display: inline-block;
-    margin-right: .5rem;
 }
 
 .seccion .fastest__lap{
