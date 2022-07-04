@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { Dispatch, SetStateAction } from "react"
 import apiCountriesDB from "../../api/CountriesDB"
 import { Country } from "../../interfaces/CountriesInterfaces"
 import { CountriesContext } from "./CountriesContext"
@@ -8,29 +8,32 @@ interface ProviderProps {
     children: JSX.Element | JSX.Element[]
 }
 
-const INITIAL_STATE: Country = {
-    name: "",
-    alpha3Code: "",
-    timezones: [],
-    flags: {
-        svg: "",
-        png: ""
-    },
-    independent: ""
-}
+export const CountriesProvider = ({ children }: ProviderProps) => {
 
-export const CountriesProvider = ({children}: ProviderProps) => {
-    const [stateCountry, setStateCountry] = useState(INITIAL_STATE);
+    const getCountry = async (query: string, setCountry: Dispatch<SetStateAction<Country>>) => {
+        const response: any = await apiCountriesDB(`name/${query}`);
+        const data: Country[] = response.data;
 
-    const getCountry = async ( query: string ) => {
-        const response: any = await apiCountriesDB(`name/${query}?fields=name,alpha3Code,timezones,flags`);
-        const data: Country = response.data[0];
-        setStateCountry(data);
+        if (data.length === 1) {
+            setCountry(data[0]);
+        } else {
+            data.map((value) => {
+                for (let index = 0; index < value.altSpellings.length; index++) {
+                    const element = value.altSpellings[index];
+                    if (element === "UK") {
+                        setCountry(value);
+                    }
+                }
+            });
+        }
+
+        // console.log(data);
+
+        // setCountry(data);
     }
 
-    return(
+    return (
         <CountriesContext.Provider value={{
-            stateCountry,
             getCountry
         }}>
             {children}
