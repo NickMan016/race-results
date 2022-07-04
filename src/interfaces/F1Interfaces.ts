@@ -8,6 +8,7 @@ export interface MRData {
     offset: string
     total: string
     RaceTable?: RaceTable
+    StandingsTable?: StandingsTable
 }
 
 export interface Driver {
@@ -46,7 +47,12 @@ export interface Race {
     Circuit: Circuit
     date: string
     time: string
-    Results: Result[]
+    Results?: Result[]
+    FirstPractice: Schedule
+    SecondPractice: Schedule
+    ThirdPractice?: Schedule
+    Qualifying: Schedule
+    Sprint?: Schedule
 }
 
 export interface Location {
@@ -62,6 +68,11 @@ export interface RaceTable {
     Races: Race[]
 }
 
+export interface StandingsTable {
+    season: string
+    StandingsLists: StandingsList[]
+}
+
 export interface Result {
     number: string
     position: string
@@ -73,7 +84,31 @@ export interface Result {
     laps: string
     status: string
     Time: Time
-    FastestLap: FastestLap
+    FastestLap?: FastestLap
+}
+
+export interface StandingsList {
+    season: string
+    round: string
+    DriverStandings?: DriverStanding[]
+    ConstructorStandings?: ConstructorStanding[]
+}
+
+export interface DriverStanding {
+    position: string
+    positionText: string
+    points: string
+    wins: string
+    Driver: Driver
+    Constructors: Constructor[]
+}
+
+export interface ConstructorStanding {
+    position: string
+    positionText: string
+    points: string
+    wins: string
+    Constructor: Constructor
 }
 
 export interface Time {
@@ -85,4 +120,9 @@ export interface FastestLap {
     rank: string
     lap: string
     Time: Time
+}
+
+export interface Schedule {
+    date: string
+    time: string
 }
