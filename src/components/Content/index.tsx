@@ -1,38 +1,25 @@
 import './Content.css'
-import { useContext, useEffect, useState } from "react"
-import { F1Context } from "../../context/F1DB/F1Context"
-import { SectionLoading } from './components/SectionLoading';
 import { SectionResults } from './components/SectionResults';
+import { SectionRace } from './components/SeccionRace';
+import { useContext } from 'react';
+import { F1Context } from '../../context/F1DB/F1Context';
+import { SectionDriverStanding } from './components/SectionDriverStanding';
+import { SectionConstructorStanding } from './components/SectionConstructorStanding';
+import { SectionFlags } from './components/SectionFlags';
 
 export const Content = () => {
-    const [isLoad, setIsLoad] = useState(false);
-    const { stateRaces, getResults } = useContext(F1Context);
-
-    useEffect(() => {
-        getResults('current/last/results.json');
-
-        setTimeout(() => {
-            setIsLoad(true);
-        }, 2000);
-    }, [])
-
-
 
     return (
-        <div className="contenedor">
-            {
-                isLoad ? (
-                    <>
-                        <SectionResults loading={false} title={`Result of the Last Race`} raceName={`${stateRaces.RaceTable?.Races[0].raceName}`} locality={`${stateRaces.RaceTable?.Races[0].Circuit.Location.locality}`} country={`${stateRaces.RaceTable?.Races[0].Circuit.Location.country}`} dataResultTable={stateRaces.RaceTable?.Races[0].Results} />
-                    </>
-                ) : (
-                    <>
-                        <SectionLoading />
-                        <SectionLoading />
-                    </>
-                )
-
-            }
+        <div className="contenedor grid__contenedor">
+            <div className="principal__contenedor">
+                <SectionRace title='Next Race Info' />
+                <SectionResults title='Result of Last Race' />
+                <SectionFlags />
+            </div>
+            <div className="sidebar__contenedor">
+                <SectionDriverStanding />
+                <SectionConstructorStanding />
+            </div>
         </div>
     )
 }

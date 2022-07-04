@@ -1,36 +1,54 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircle } from "@fortawesome/free-solid-svg-icons"
-import { useContext, useEffect } from "react"
-import { CountriesContext } from "../../../../context/CountriesDB/CountriesContext"
+import { useContext, useEffect, useState } from "react"
+import { F1Context } from "../../../../context/F1DB/F1Context"
 import { Result } from "../../../../interfaces/F1Interfaces"
+import { Country } from "../../../../interfaces/CountriesInterfaces"
+import { SectionLoading } from "../SectionLoading"
 
 interface propsSection {
-    loading?: boolean
     title: string
-    raceName: string
-    locality: string
-    country: string
-    dataResultTable?: Result[]
 }
 
-export const SectionResults = ({ loading = true, title, raceName, locality, country, dataResultTable }: propsSection) => {
-    const { stateCountry, getCountry } = useContext(CountriesContext);
+export const SectionResults = ({ title }: propsSection) => {
+
+    const INITIAL_STATE: Country = {
+        name: "",
+        alpha3Code: "",
+        timezones: [],
+        flags: {
+            png: "",
+            svg: ""
+        },
+        independent: "",
+        altSpellings: [],
+        region: "",
+        capital: ""
+    }
+
+    const [isLoad, setIsLoad] = useState(false);
+    const { stateResults, getResults } = useContext(F1Context);
+    const [stateCountry, setStateCountry] = useState(INITIAL_STATE);
+    const { RaceTable } = stateResults;
+    const { flags } = stateCountry;
 
     useEffect(() => {
-        if (!loading) {
-            getCountry(country);
-        }
-    }, [loading])
+        getResults('current/last/results', setStateCountry);
+
+        setTimeout(() => {
+            setIsLoad(true);
+        }, 2000);
+    }, [])
 
     return (
         <>
             {
-                !loading ? (
+                isLoad ? (
                     <div className="seccion">
                         <div className="titulo__seccion">{title}</div>
                         <div className="info__seccion">
-                            {`${raceName} - ${locality}, ${country}`}
-                            <img className="flag" src={stateCountry.flags.svg} alt={`${country}'s flag`} />
+                            {`${RaceTable?.Races[0].Circuit.circuitName} - ${RaceTable?.Races[0].Circuit.Location.locality}, ${RaceTable?.Races[0].Circuit.Location.country}`}
+                            <img className="flag" src={flags.svg} alt={`${RaceTable?.Races[0].Circuit.Location.country}'s flag`} />
                         </div>
                         <div className="info__seccion">
                             <span>
@@ -51,17 +69,19 @@ export const SectionResults = ({ loading = true, title, raceName, locality, coun
                                 <tr className="thead">
                                     <th className="center">Pos.</th>
                                     <th>Driver</th>
-                                    <th>Constructor</th>
+                                    <th>Team</th>
                                     <th>Time</th>
                                     <th className="center">Status</th>
                                     <th className="center">Points</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {dataResultTable?.map((value: Result, index) => {
+                                {RaceTable?.Races[0].Results?.map((value: Result, index) => {
                                     let status;
+                                    console.log(value);
+                                    
 
-                                    if (value.FastestLap.rank === '1') {
+                                    if (value.FastestLap?.rank === '1') {
                                         status = <>
                                             <FontAwesomeIcon icon={faCircle} className="finished" />
                                             <FontAwesomeIcon icon={faCircle} className="fastest__lap" />
@@ -85,7 +105,9 @@ export const SectionResults = ({ loading = true, title, raceName, locality, coun
                             </tbody>
                         </table>
                     </div>
-                ) : undefined
+                ) : (
+                    <SectionLoading />
+                )
             }
         </>
     )
