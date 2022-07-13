@@ -11,3 +11,9 @@ body {
     color: #000;
     overflow-y: scroll;
 }
+
+@media screen and (max-width: 750px) {
+    * {
+        font-size: 12px;
+    }
+}
