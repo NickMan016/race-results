@@ -16,8 +16,8 @@ export const FormatDate = ({ gmt = false, date, time, region, capital }: propsHo
             {
                 gmt ? (
                     <>
-                        &nbsp;(GM
-                        <Moment date={date} format="TZ" />)
+                        &nbsp;(GMT
+                        <Moment date={date} format="Z" />)
                     </>
                 ) : undefined
             }
