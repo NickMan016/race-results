@@ -8,9 +8,10 @@ import { FormatDate } from "../../../../hooks/FormatDate"
 
 interface propsSection {
     title: string
+    round: number
 }
 
-export const SectionRace = ({ title }: propsSection) => {
+export const SectionRace = ({ title, round }: propsSection) => {
 
     const INITIAL_STATE: Country = {
         name: "",
@@ -33,15 +34,15 @@ export const SectionRace = ({ title }: propsSection) => {
     const { flags, region, capital } = stateCountry;
 
     useEffect(() => {
-        setTimeout(() => {
-            if (stateResults.series === "f1") {
-                getRace(`${stateResults.RaceTable?.season}/${parseInt(stateResults.RaceTable?.round || '') + 1}`, setStateCountry)
+        // setTimeout(() => {
+        //     if (stateResults.series === "f1") {
+                getRace(`current/${round + 1}`, setStateCountry)
                 setTimeout(() => {
                     setIsLoad(true);
                 }, 2000);
-            }
+        //     }
 
-        }, 2000);
+        // }, 2000);
     }, [stateResults]);
 
     return (
@@ -98,7 +99,7 @@ export const SectionRace = ({ title }: propsSection) => {
                             }
                         </div>
                         
-                        <div className="grid__seccion">
+                        <div className="subgrid__seccion">
                             <img className="image__circuit" src={require(`./../../../../assets/img/${RaceTable?.Races[0].Circuit.circuitId}.png`)} alt="" />
                         </div>
                     </div>
