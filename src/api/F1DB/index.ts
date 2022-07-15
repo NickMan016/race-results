@@ -6,6 +6,6 @@ export default async function apiF1DB( url: string ) {
 
         return response;
     } catch (error) {
-        Promise.reject(error);
+        console.log(error);
     }
 }
