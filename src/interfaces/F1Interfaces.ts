@@ -48,6 +48,7 @@ export interface Race {
     date: string
     time: string
     Results?: Result[]
+    QualifyingResults?: QualifyingResult[]
     FirstPractice: Schedule
     SecondPractice: Schedule
     ThirdPractice?: Schedule
@@ -71,6 +72,16 @@ export interface RaceTable {
 export interface StandingsTable {
     season: string
     StandingsLists: StandingsList[]
+}
+
+export interface QualifyingResult {
+    number: string
+    position: string
+    Driver: Driver
+    Constructor: Constructor
+    Q1: string
+    Q2?: string
+    Q3?: string
 }
 
 export interface Result {
