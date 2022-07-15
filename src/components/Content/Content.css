@@ -6,6 +6,7 @@
     margin: auto;
     width: 90%;
     max-width: 1200px;
+    margin-top: 50px;
 }
 
 .grid__contenedor {
@@ -231,21 +232,11 @@
 
 @media screen and (max-width: 750px) {
     .contenedor {
-        margin: 0;
-        width: 100%;
-    }
-
-    .principal__contenedor,
-    .sidebar__contenedor {
-        width: 100%;
+        margin-top: 60px;
     }
 
     .grid__contenedor {
         display: block;
-    }
-
-    .subgrid__seccion {
-        grid-column: span 2;
     }
 
     .seccion .image__circuit {
@@ -260,5 +251,15 @@
 
     .contenedor__tabla {
         overflow-x: scroll;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .contenedor {
+        margin-top: 65px;
+    }
+
+    .subgrid__seccion {
+        grid-column: span 2;
     }
 }
