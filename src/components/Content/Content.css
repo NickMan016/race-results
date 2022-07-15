@@ -45,15 +45,9 @@
     display: block;
 }
 
-.seccion .titulo__seccion {
-    margin-bottom: .25rem;
-}
-
 .seccion .info__seccion {
     margin-top: .5rem;
     display: block;
-    /* display: flex;
-    align-items: center; */
 }
 
 .seccion svg {
@@ -102,7 +96,6 @@
 .seccion .titulo__seccion {
     font-size: 1.75rem;
     font-weight: bold;
-    /* color: #EE0000; */
 }
 
 /* ------------------------------ */
@@ -263,6 +256,9 @@
 
     .seccion {
         margin: 20px 0;
+    }
+
+    .contenedor__tabla {
         overflow-x: scroll;
     }
 }

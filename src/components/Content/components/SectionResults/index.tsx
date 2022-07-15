@@ -64,47 +64,49 @@ export const SectionResults = ({ title }: propsSection) => {
                                 Fastest Lap
                             </span>
                         </div>
-                        <table className="tabla">
-                            <thead>
-                                <tr className="thead">
-                                    <th className="center">Pos.</th>
-                                    <th>Driver</th>
-                                    <th>Team</th>
-                                    <th>Time</th>
-                                    <th className="center">Status</th>
-                                    <th className="center">Points</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {RaceTable?.Races[0].Results?.map((value: Result, index) => {
-                                    let status, time;
-                                    
-                                    if (value.FastestLap?.rank === '1') {
-                                        status = <>
-                                            <FontAwesomeIcon icon={faCircle} className="finished" />
-                                            <FontAwesomeIcon icon={faCircle} className="fastest__lap" />
-                                        </>;
-                                        time = value.Time.time;
-                                    } else if (value.status === 'Finished' || value.status === '+1 Lap' || value.status === '+2 Lap' || value.status === '+3 Lap' || value.status === '+4 Lap' || value.status === '+5 Lap' || value.status === '+6 Lap' || value.status === '+7 Lap' || value.status === '+8 Lap' || value.status === '+9 Lap') {
-                                        status = <FontAwesomeIcon icon={faCircle} className="finished" />;
-                                        time = value.Time?.time || value.status;
-                                    } else {
-                                        status = <FontAwesomeIcon icon={faCircle} className="dnf" />;
-                                        time = 'No Time'
-                                    }
-                                    return (
-                                        <tr key={index}>
-                                            <td className="center">{value.position}</td>
-                                            <td>{`${value.Driver.givenName} ${value.Driver.familyName}`}</td>
-                                            <td>{value.Constructor.name}</td>
-                                            <td>{time}</td>
-                                            <td className="center">{status}</td>
-                                            <td className="center">{value.points}</td>
-                                        </tr>
-                                    )
-                                })}
-                            </tbody>
-                        </table>
+                        <div className="contenedor__tabla">
+                            <table className="tabla">
+                                <thead>
+                                    <tr className="thead">
+                                        <th className="center">Pos.</th>
+                                        <th>Driver</th>
+                                        <th>Team</th>
+                                        <th>Time</th>
+                                        <th className="center">Status</th>
+                                        <th className="center">Points</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {RaceTable?.Races[0].Results?.map((value: Result, index) => {
+                                        let status, time;
+
+                                        if (value.FastestLap?.rank === '1') {
+                                            status = <>
+                                                <FontAwesomeIcon icon={faCircle} className="finished" />
+                                                <FontAwesomeIcon icon={faCircle} className="fastest__lap" />
+                                            </>;
+                                            time = value.Time.time;
+                                        } else if (value.status === 'Finished' || value.status === '+1 Lap' || value.status === '+2 Lap' || value.status === '+3 Lap' || value.status === '+4 Lap' || value.status === '+5 Lap' || value.status === '+6 Lap' || value.status === '+7 Lap' || value.status === '+8 Lap' || value.status === '+9 Lap') {
+                                            status = <FontAwesomeIcon icon={faCircle} className="finished" />;
+                                            time = value.Time?.time || value.status;
+                                        } else {
+                                            status = <FontAwesomeIcon icon={faCircle} className="dnf" />;
+                                            time = 'No Time'
+                                        }
+                                        return (
+                                            <tr key={index}>
+                                                <td className="center">{value.position}</td>
+                                                <td>{`${value.Driver.givenName} ${value.Driver.familyName}`}</td>
+                                                <td>{value.Constructor.name}</td>
+                                                <td>{time}</td>
+                                                <td className="center">{status}</td>
+                                                <td className="center">{value.points}</td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 ) : (
                     <SectionLoading />
