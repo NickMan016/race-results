@@ -28,22 +28,18 @@ export const SectionRace = ({ title, round }: propsSection) => {
     }
 
     const [isLoad, setIsLoad] = useState(false);
-    const { stateResults, stateRace, getRace } = useContext(F1Context);
+    const { stateRace, getRace } = useContext(F1Context);
     const [stateCountry, setStateCountry] = useState(INITIAL_STATE);
     const { RaceTable } = stateRace;
     const { flags, region, capital } = stateCountry;
 
     useEffect(() => {
-        // setTimeout(() => {
-        //     if (stateResults.series === "f1") {
-                getRace(`current/${round + 1}`, setStateCountry)
-                setTimeout(() => {
-                    setIsLoad(true);
-                }, 2000);
-        //     }
+        const response = getRace(`current/${round + 1}`, setStateCountry)
 
-        // }, 2000);
-    }, [stateResults]);
+        setTimeout(() => {
+            response.then(value => setIsLoad(value))
+        }, 2000);
+    }, []);
 
     return (
         <>
@@ -98,7 +94,7 @@ export const SectionRace = ({ title, round }: propsSection) => {
                                 )
                             }
                         </div>
-                        
+
                         <div className="subgrid__seccion">
                             <img className="image__circuit" src={require(`./../../../../assets/img/${RaceTable?.Races[0].Circuit.circuitId}.png`)} alt="" />
                         </div>

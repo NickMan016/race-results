@@ -9,9 +9,10 @@ export const SectionDriverStanding = () => {
     const { StandingsTable } = stateDriverStanding
 
     useEffect(() => {
-        getDriverStanding('current/driverStandings');
+        const response = getDriverStanding('current/driverStandings');
+
         setTimeout(() => {
-            setIsLoad(true)
+            response.then(value => setIsLoad(value))
         }, 2000);
     }, [])
 

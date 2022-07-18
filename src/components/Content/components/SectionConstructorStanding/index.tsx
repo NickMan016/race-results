@@ -9,9 +9,10 @@ export const SectionConstructorStanding = () => {
     const { StandingsTable } = stateConstructorStanding
 
     useEffect(() => {
-        getConstructorStanding('current/constructorStandings');
+        const response = getConstructorStanding('current/constructorStandings');
+
         setTimeout(() => {
-            setIsLoad(true)
+            response.then(value => setIsLoad(value))
         }, 2000);
     }, [])
 

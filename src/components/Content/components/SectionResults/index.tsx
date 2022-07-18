@@ -33,10 +33,10 @@ export const SectionResults = ({ title }: propsSection) => {
     const { flags } = stateCountry;
 
     useEffect(() => {
-        getResults('current/last/results', setStateCountry);
+        const response = getResults('current/last/results', setStateCountry);
 
         setTimeout(() => {
-            setIsLoad(true);
+            response.then(value => setIsLoad(value))
         }, 2000);
     }, [])
 
