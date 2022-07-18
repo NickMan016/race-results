@@ -88,7 +88,7 @@ header .navbar .btn__menu {
         width: 250px;
         height: 100vh;
         background: #fff;
-        top: 46px;
+        top: 45px;
         right: -250px;
         box-shadow: -2px 2px 6px #505050;
         z-index: 999;
@@ -101,6 +101,10 @@ header .navbar .btn__menu {
     header .navbar ul li {
         float: none;
         text-align: center;
+    }
+
+    header .navbar ul li a{
+        font-size: 1.15rem;
     }
 
     header .navbar .btn__menu {
