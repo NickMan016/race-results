@@ -24,12 +24,9 @@ export const CountriesProvider = ({ children }: ProviderProps) => {
                         setCountry(value);
                     }
                 }
+                return;
             });
         }
-
-        // console.log(data);
-
-        // setCountry(data);
     }
 
     return (
