@@ -22,28 +22,30 @@ export const SectionConstructorStanding = () => {
                 isLoad ? (
                     <div className="seccion">
                         <div className="titulo__seccion">Constructor Championship</div>
-                        <table className="tabla">
-                            <thead>
-                                <tr className="thead">
-                                    <th className="center">Pos.</th>
-                                    <th>Constructor</th>
-                                    <th className="center">Pts.</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    StandingsTable?.StandingsLists[0].ConstructorStandings?.map((value, index) => {
-                                        return (
-                                            <tr key={index}>
-                                                <td className="center">{value.position}</td>
-                                                <td>{value.Constructor.name}</td>
-                                                <td className="center">{value.points}</td>
-                                            </tr>
-                                        )
-                                    })
-                                }
-                            </tbody>
-                        </table>
+                        <div className="contenedor__tabla">
+                            <table className="tabla">
+                                <thead>
+                                    <tr className="thead">
+                                        <th className="center">Pos.</th>
+                                        <th>Constructor</th>
+                                        <th className="center">Pts.</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        StandingsTable?.StandingsLists[0].ConstructorStandings?.map((value, index) => {
+                                            return (
+                                                <tr key={index}>
+                                                    <td className="center">{value.position}</td>
+                                                    <td>{value.Constructor.name}</td>
+                                                    <td className="center">{value.points}</td>
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 ) : (
                     <SectionLoading />
