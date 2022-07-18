@@ -7,10 +7,10 @@ export type F1ContextProps = {
     stateRace: MRData,
     stateDriverStanding: MRData,
     stateConstructorStanding: MRData,
-    getResults: ( query: string, setCountry: Dispatch<SetStateAction<Country>> ) => void,
-    getRace: ( query: string, setCountry: Dispatch<SetStateAction<Country>> ) => void,
-    getDriverStanding: ( query: string ) => void,
-    getConstructorStanding: ( query: string ) => void
+    getResults: ( query: string, setCountry: Dispatch<SetStateAction<Country>> ) => Promise<boolean>,
+    getRace: ( query: string, setCountry: Dispatch<SetStateAction<Country>> ) => Promise<boolean>,
+    getDriverStanding: ( query: string ) => Promise<boolean>,
+    getConstructorStanding: ( query: string ) => Promise<boolean>
 }
 
 export const F1Context = createContext<F1ContextProps>({} as F1ContextProps);

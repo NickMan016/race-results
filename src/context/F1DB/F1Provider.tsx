@@ -37,29 +37,49 @@ export const F1Provider = ({ children }: ProviderProps) => {
     const { getCountry } = useContext(CountriesContext);
 
     const getResults = async ( query: string, setCountry: Dispatch<SetStateAction<Country>> ) => {
-        const response: any = await apiF1DB(query)
-        const data: MRData = response.data.MRData;
-        setStateResults(data)
-        getCountry(data.RaceTable?.Races[0].Circuit.Location.country || '', setCountry)
+        try {
+            const response: any = await apiF1DB(query)
+            const data: MRData = await response.data.MRData;
+            setStateResults(data)
+            getCountry(data.RaceTable?.Races[0].Circuit.Location.country || '', setCountry)
+            return true;
+        } catch (error) {
+            return false;
+        }
     }
 
     const getRace = async ( query: string, setCountry: Dispatch<SetStateAction<Country>> ) => {
-        const response: any = await apiF1DB(query);
-        const data: MRData = response.data.MRData;
-        setStateRace(data);
-        getCountry(data.RaceTable?.Races[0].Circuit.Location.country || '', setCountry);
+        try {
+            const response: any = await apiF1DB(query);
+            const data: MRData = await response.data.MRData;
+            setStateRace(data);
+            getCountry(data.RaceTable?.Races[0].Circuit.Location.country || '', setCountry);
+            return true;
+        } catch (error) {
+            return false;
+        }
     }
 
     const getDriverStanding = async ( query: string ) => {
-        const response: any = await apiF1DB(query);
-        const data: MRData = response.data.MRData;
-        setStateDriverStanding(data);
+        try {
+            const response: any = await apiF1DB(query);
+            const data: MRData = await response.data.MRData;
+            setStateDriverStanding(data);
+            return true;
+        } catch (error) {
+            return false;
+        }
     }
 
     const getConstructorStanding = async ( query: string ) => {
-        const response: any = await apiF1DB(query);
-        const data: MRData = response.data.MRData;
-        setStateConstructorStanding(data);
+        try {
+            const response: any = await apiF1DB(query);
+            const data: MRData = await response.data.MRData;
+            setStateConstructorStanding(data);
+            return true;
+        } catch (error) {
+            return false;
+        }
     }
 
     return (
