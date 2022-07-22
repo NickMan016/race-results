@@ -39,8 +39,6 @@ export const Drivers = () => {
             responseDrivers.then(value => {
                 setIsLoad(value)
                 setIsLoadTable(value)
-                const DriversTemp = (DriverTable?.Drivers || [])
-                setDrivers(DriversTemp)
             })
         }, 2000);
     }, [])
@@ -51,8 +49,6 @@ export const Drivers = () => {
         setTimeout(() => {
             responseDrivers.then(value => {
                 setIsLoadTable(value)
-                const DriversTemp = (DriverTable?.Drivers || [])
-                setDrivers(DriversTemp)
             })
         }, 2000);
     }, [season, team])
@@ -125,7 +121,7 @@ export const Drivers = () => {
                                         isLoadTable ? (
                                             <tbody>
                                                 {
-                                                    drivers.length == 0 ? (
+                                                    DriverTable?.Drivers.length == 0 ? (
                                                         <tr className="fila__error">
                                                             <td colSpan={4}>No drivers found with your search</td>
                                                         </tr>
@@ -133,7 +129,7 @@ export const Drivers = () => {
                                                         <>
                                                             {
 
-                                                                drivers.map((value, index) => (
+                                                                DriverTable?.Drivers.map((value, index) => (
                                                                     <tr key={index}>
                                                                         <td className="col__img">
                                                                             {/* <img src={require(`./../../assets/img/drivers/${value.driverId}.png`) || require('./../../assets/img/generic.png')} alt={`Foto de ${value.driverId}`} /> */}
