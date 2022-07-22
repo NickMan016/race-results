@@ -1,0 +1,11 @@
+.skeleton__fila {
+    background: none !important;
+}
+
+.skeleton__fila:hover {
+    background: none !important;
+}
+
+.skeleton__fila .skeleton__texto {
+    margin: .25rem 0;
+}
