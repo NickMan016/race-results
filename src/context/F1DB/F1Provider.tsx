@@ -34,6 +34,8 @@ export const F1Provider = ({ children }: ProviderProps) => {
     const [stateRace, setStateRace] = useState(INITIAL_STATE);
     const [stateDriverStanding, setStateDriverStanding] = useState(INITIAL_STATE);
     const [stateConstructorStanding, setStateConstructorStanding] = useState(INITIAL_STATE);
+    const [stateConstructors, setStateConstructors] = useState(INITIAL_STATE);
+    const [stateDrivers, setStateDrivers] = useState(INITIAL_STATE);
     const { getCountry } = useContext(CountriesContext);
 
     const getResults = async ( query: string, setCountry: Dispatch<SetStateAction<Country>> ) => {
@@ -82,16 +84,42 @@ export const F1Provider = ({ children }: ProviderProps) => {
         }
     }
 
+    const getConstructors = async ( query: string ) => {
+        try {
+            const response: any = await apiF1DB(query);
+            const data: MRData = await response.data.MRData;
+            setStateConstructors(data);
+            return true;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    const getDrivers = async ( query: string ) => {
+        try {
+            const response: any = await apiF1DB(query);
+            const data: MRData = await response.data.MRData;
+            setStateDrivers(data);
+            return true;
+        } catch (error) {
+            return false;
+        }
+    }
+
     return (
         <F1Context.Provider value={{
             stateResults,
             stateRace,
             stateDriverStanding,
             stateConstructorStanding,
+            stateConstructors,
+            stateDrivers,
             getResults,
             getRace,
             getDriverStanding,
-            getConstructorStanding
+            getConstructorStanding,
+            getConstructors,
+            getDrivers
         }}>
             {children}
         </F1Context.Provider>
