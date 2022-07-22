@@ -9,10 +9,14 @@ export interface MRData {
     total: string
     RaceTable?: RaceTable
     StandingsTable?: StandingsTable
+    ConstructorTable?: ConstructorTable,
+    DriverTable?: DriverTable,
 }
 
 export interface Driver {
     driverId: string
+    permanentNumber?: string
+    code?: string
     url: string
     givenName: string
     familyName: string
@@ -82,6 +86,16 @@ export interface QualifyingResult {
     Q1: string
     Q2?: string
     Q3?: string
+}
+
+export interface ConstructorTable {
+    Constructors: Constructor[]
+}
+
+export interface DriverTable {
+    season?: string,
+    constructorId?: string,
+    Drivers: Driver[]
 }
 
 export interface Result {
