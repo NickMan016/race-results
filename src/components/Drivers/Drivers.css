@@ -53,3 +53,14 @@
     margin: auto;
     width: 2.5rem;
 }
+
+@media screen and (max-width: 640px) {
+    .formulario__filtros {
+        width: 100%;
+        display: block;
+    }
+
+    .form__group {
+        padding: 10px 0;
+    }
+}
