@@ -1,0 +1,55 @@
+.formulario__filtros {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.form__group {
+    padding: 10px 10px;
+    width: 100%;
+}
+
+.label__input,
+.form__input {
+    width: 100%;
+    display: block;
+}
+
+.label__input {
+    font-weight: bold;
+}
+
+.form__input {
+    margin-top: .5rem;
+    border: none;
+    background: none;
+    padding: 10px 8px;
+    border-radius: 5px;
+    border: 3px solid rgb(160, 160, 160);
+    outline: none;
+}
+
+.form__group .btn__form {
+    width: 100%;
+    background: #EE0000;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    padding: 14px 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.fila__error {
+    text-align: center;
+}
+
+.fila__error:hover {
+    background: none !important;
+}
+
+.col__img img {
+    display: block;
+    margin: auto;
+    width: 2.5rem;
+}
