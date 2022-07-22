@@ -96,7 +96,7 @@ export const SectionRace = ({ title, round }: propsSection) => {
                         </div>
 
                         <div className="subgrid__seccion">
-                            <img className="image__circuit" src={require(`./../../../../assets/img/${RaceTable?.Races[0].Circuit.circuitId}.png`)} alt="" />
+                            <img className="image__circuit" src={require(`./../../../../assets/img/circuits/${RaceTable?.Races[0].Circuit.circuitId}.png`)} alt="" />
                         </div>
                     </div>
                 ) : (
