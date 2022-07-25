@@ -34,7 +34,7 @@ export const SectionRace = ({ title, round }: propsSection) => {
     const { flags, region, capital } = stateCountry;
 
     useEffect(() => {
-        const response = getRace(`current/${round + 1}`, setStateCountry)
+        const response = getRace(`current/next`, setStateCountry)
 
         setTimeout(() => {
             response.then(value => setIsLoad(value))
