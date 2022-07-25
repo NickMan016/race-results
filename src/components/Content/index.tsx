@@ -1,18 +1,34 @@
-import './Content.css'
+import { useEffect, useState } from 'react';
 import { SectionResults } from './components/SectionResults';
 import { SectionRace } from './components/SeccionRace';
 import { SectionDriverStanding } from './components/SectionDriverStanding';
 import { SectionConstructorStanding } from './components/SectionConstructorStanding';
 import { SectionFlags } from './components/SectionFlags';
-import data from './../../data/data.json';
+import './Content.css'
 
 export const Content = () => {
+    const [showFlags, setShowFlags] = useState(true);
+
+    useEffect(() => {
+        window.onresize = () => {
+            if (window.innerWidth <= 1200)
+                setShowFlags(false)
+            else
+                setShowFlags(true)
+        }
+        
+    }, [])
+
     return (
         <div className="contenedor grid__contenedor">
             <div className="principal__contenedor">
-                <SectionRace title='Next Race Info' round={data.round} />
+                <SectionRace title='Next Race Info' />
                 <SectionResults title='Result of Last Race' />
-                <SectionFlags />
+                {
+                    showFlags ? (
+                        <SectionFlags />
+                    ) : undefined
+                }
             </div>
             <div className="sidebar__contenedor">
                 <SectionDriverStanding />
