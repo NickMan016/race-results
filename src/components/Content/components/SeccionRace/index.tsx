@@ -8,10 +8,9 @@ import { FormatDate } from "../../../../hooks/FormatDate"
 
 interface propsSection {
     title: string
-    round: number
 }
 
-export const SectionRace = ({ title, round }: propsSection) => {
+export const SectionRace = ({ title }: propsSection) => {
 
     const INITIAL_STATE: Country = {
         name: "",
