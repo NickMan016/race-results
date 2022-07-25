@@ -9,3 +9,10 @@
 .skeleton__fila .skeleton__texto {
     margin: .25rem 0;
 }
+
+.skeleton__foto {
+    margin: auto;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+}

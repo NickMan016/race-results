@@ -54,6 +54,16 @@
     width: 2.5rem;
 }
 
+.columna__foto {
+    width: 10%;
+}
+
+@media screen and (max-width: 750px) {
+    .columna__foto {
+        width: 15%;
+    }
+}
+
 @media screen and (max-width: 640px) {
     .formulario__filtros {
         width: 100%;
