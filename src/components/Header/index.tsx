@@ -11,14 +11,14 @@ export const Header = () => {
     return (
         <header>
             <nav className="navbar">
-                <Link to="/" className="logo">
+                <Link onClick={() => setActiveMenu(false)} to="/" className="logo">
                     <img src={logo} alt="Logo" />
                 </Link>
                 <ul className={`${activeMenu ? 'active' : ''}`}>
-                    <li><NavLink to="/drivers">Drivers</NavLink></li>
-                    <li><NavLink to="/">Constructors</NavLink></li>
-                    <li><NavLink to="/">Circuits</NavLink></li>
-                    <li><NavLink to="/">Races</NavLink></li>
+                    <li><NavLink onClick={() => setActiveMenu(false)} to="/drivers">Drivers</NavLink></li>
+                    <li><NavLink onClick={() => setActiveMenu(false)} to="/">Constructors</NavLink></li>
+                    <li><NavLink onClick={() => setActiveMenu(false)} to="/">Circuits</NavLink></li>
+                    <li><NavLink onClick={() => setActiveMenu(false)} to="/">Races</NavLink></li>
                 </ul>
                 <button className='btn__lista btn__menu' id='btn-menu'><FontAwesomeIcon icon={faBars} onClick={() => setActiveMenu(!activeMenu)} /></button>
             </nav>
