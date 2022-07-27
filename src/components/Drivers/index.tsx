@@ -1,7 +1,6 @@
 import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { F1Context } from '../../context/F1DB/F1Context';
 import { useForm } from '../../hooks/useForm';
-import { Driver } from '../../interfaces/F1Interfaces';
 import { SectionLoading } from '../Content/components/SectionLoading';
 import { TableLoading } from './components/TableLoading';
 import './Drivers.css'
@@ -14,15 +13,14 @@ interface FormData {
 
 export const Drivers = () => {
     const years = [];
-    const { form, setForm, handleChangeInput, handleChangeSelect } = useForm<FormData>({
+    const { form, handleChangeSelect } = useForm<FormData>({
         season: 'current',
         team: '0',
         search: ''
     });
     const [isLoad, setIsLoad] = useState(false);
     const [isLoadTable, setIsLoadTable] = useState(false);
-    const [drivers, setDrivers] = useState<Array<Driver>>([])
-    const { season, team, search } = form;
+    const { season, team } = form;
     const { stateConstructors, stateDrivers, getConstructors, getDrivers } = useContext(F1Context);
     const { ConstructorTable } = stateConstructors;
     const { DriverTable } = stateDrivers;
