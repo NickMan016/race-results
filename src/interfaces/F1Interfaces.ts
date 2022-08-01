@@ -11,6 +11,7 @@ export interface MRData {
     StandingsTable?: StandingsTable
     ConstructorTable?: ConstructorTable,
     DriverTable?: DriverTable,
+    CircuitTable?: CircuitTable,
 }
 
 export interface Driver {
@@ -96,6 +97,11 @@ export interface DriverTable {
     season?: string,
     constructorId?: string,
     Drivers: Driver[]
+}
+
+export interface CircuitTable {
+    season?: string,
+    Circuits: Circuit[]
 }
 
 export interface Result {
