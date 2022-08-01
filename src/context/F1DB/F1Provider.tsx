@@ -20,10 +20,6 @@ const INITIAL_STATE: MRData = {
         season: "",
         round: "",
         Races: []
-    },
-    StandingsTable: {
-        season: "",
-        StandingsLists: []
     }
 }
 
