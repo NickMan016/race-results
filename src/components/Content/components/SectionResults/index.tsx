@@ -86,7 +86,7 @@ export const SectionResults = ({ title }: propsSection) => {
                                                 <FontAwesomeIcon icon={faCircle} className="fastest__lap" />
                                             </>;
                                             time = value.Time.time;
-                                        } else if (value.status === 'Finished' || value.status === '+1 Lap' || value.status === '+2 Lap' || value.status === '+3 Lap' || value.status === '+4 Lap' || value.status === '+5 Lap' || value.status === '+6 Lap' || value.status === '+7 Lap' || value.status === '+8 Lap' || value.status === '+9 Lap') {
+                                        } else if (value.status === 'Finished' || value.status === '+1 Lap' || value.status === '+2 Laps' || value.status === '+3 Laps' || value.status === '+4 Laps' || value.status === '+5 Laps' || value.status === '+6 Laps' || value.status === '+7 Laps' || value.status === '+8 Laps' || value.status === '+9 Laps') {
                                             status = <FontAwesomeIcon icon={faCircle} className="finished" />;
                                             time = value.Time?.time || value.status;
                                         } else {
