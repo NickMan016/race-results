@@ -143,7 +143,7 @@ export const Drivers = () => {
                                                 }
                                             </tbody>
                                         ) : (
-                                            <TableLoading />
+                                            <TableLoading image={true} columns={3} />
                                         )
                                     }
                                 </>
