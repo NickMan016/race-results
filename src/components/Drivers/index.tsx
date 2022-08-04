@@ -68,7 +68,7 @@ export const Drivers = () => {
         setIsLoadTable(false)
         const { value, name } = e.target;
         handleChangeSelect(e);
-        if (name == 'season') {
+        if (name === 'season') {
             await getConstructors(`${value}/constructors`);
         }
     }
@@ -119,7 +119,7 @@ export const Drivers = () => {
                                         isLoadTable ? (
                                             <tbody>
                                                 {
-                                                    DriverTable?.Drivers.length == 0 ? (
+                                                    DriverTable?.Drivers.length === 0 ? (
                                                         <tr className="fila__error">
                                                             <td colSpan={4}>No drivers found with your search</td>
                                                         </tr>
