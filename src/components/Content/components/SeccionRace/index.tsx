@@ -1,16 +1,12 @@
-import { useContext, useEffect, useState } from "react"
+import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react"
 import { F1Context } from "../../../../context/F1DB/F1Context"
 import { Country } from "../../../../interfaces/CountriesInterfaces"
-import { SectionLoading } from "../SectionLoading"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons"
 import { FormatDate } from "../../../../hooks/FormatDate"
+import { SectionLoading } from "../SectionLoading"
 
-interface propsSection {
-    title: string
-}
-
-export const SectionRace = ({ title }: propsSection) => {
+export const SectionRace = () => {
 
     const INITIAL_STATE: Country = {
         name: "",
@@ -44,48 +40,47 @@ export const SectionRace = ({ title }: propsSection) => {
         <>
             {
                 isLoad ? (
-                    <div className="seccion grid__seccion">
-                        <div className="subgrid__seccion">
-                            <div className="titulo__seccion">{title}</div>
-                            <div className="info__seccion">
+                    <div className="relative grid grid-cols-2 text-lg">
+                        <div>
+                            <div>
                                 {`${RaceTable?.Races[0].Circuit.circuitName} - ${RaceTable?.Races[0].Circuit.Location.locality}, ${RaceTable?.Races[0].Circuit.Location.country}`}
-                                <img className="flag" src={flags.svg} alt={`${RaceTable?.Races[0].Circuit.Location.country}'s flag`} />
+                                <img className="inline-block mx-2 h-4" src={flags.svg} alt={`${RaceTable?.Races[0].Circuit.Location.country}'s flag`} />
                             </div>
-                            <div className="info__seccion">
-                                <FontAwesomeIcon icon={faCalendarDays} />
+                            <div>
+                                <FontAwesomeIcon className="inline-block mr-2" icon={faCalendarDays} />
                                 <FormatDate gmt={true} date={`${RaceTable?.Races[0].date}`} time={`${RaceTable?.Races[0].time}`} region={region} capital={capital} />
                             </div>
-                            <div className="info__seccion">
+                            <div>
                                 <b>Practice 1 -</b>&nbsp;
                                 <FormatDate date={`${RaceTable?.Races[0].FirstPractice.date}`} time={`${RaceTable?.Races[0].FirstPractice.time}`} region={region} capital={capital} />
                             </div>
                             {
                                 (Object.keys(RaceTable?.Races[0].Sprint || {}).length) === 0 ? (
                                     <>
-                                        <div className="info__seccion">
+                                        <div>
                                             <b>Practice 2 -</b>&nbsp;
                                             <FormatDate date={`${RaceTable?.Races[0].SecondPractice.date}`} time={`${RaceTable?.Races[0].SecondPractice.time}`} region={region} capital={capital} />
                                         </div>
-                                        <div className="info__seccion">
+                                        <div>
                                             <b>Practice 3 -</b>&nbsp;
                                             <FormatDate date={`${RaceTable?.Races[0].ThirdPractice?.date}`} time={`${RaceTable?.Races[0].ThirdPractice?.time}`} region={region} capital={capital} />
                                         </div>
-                                        <div className="info__seccion">
+                                        <div>
                                             <b>Qualifying -</b>&nbsp;
                                             <FormatDate date={`${RaceTable?.Races[0].Qualifying.date}`} time={`${RaceTable?.Races[0].Qualifying.time}`} region={region} capital={capital} />
                                         </div>
                                     </>
                                 ) : (
                                     <>
-                                        <div className="info__seccion">
+                                        <div>
                                             <b>Qualifying -</b>&nbsp;
                                             <FormatDate date={`${RaceTable?.Races[0].Qualifying.date}`} time={`${RaceTable?.Races[0].Qualifying.time}`} region={region} capital={capital} />
                                         </div>
-                                        <div className="info__seccion">
+                                        <div>
                                             <b>Practice 2 -</b>&nbsp;
                                             <FormatDate date={`${RaceTable?.Races[0].SecondPractice.date}`} time={`${RaceTable?.Races[0].SecondPractice.time}`} region={region} capital={capital} />
                                         </div>
-                                        <div className="info__seccion">
+                                        <div>
                                             <b>Sprint -</b>&nbsp;
                                             <FormatDate date={`${RaceTable?.Races[0].Sprint?.date}`} time={`${RaceTable?.Races[0].Sprint?.time}`} region={region} capital={capital} />
                                         </div>
@@ -93,10 +88,7 @@ export const SectionRace = ({ title }: propsSection) => {
                                 )
                             }
                         </div>
-
-                        <div className="subgrid__seccion">
-                            <img className="image__circuit" src={require(`./../../../../assets/img/circuits/${RaceTable?.Races[0].Circuit.circuitId}.png`)} alt="" />
-                        </div>
+                        <img className="block m-auto h-[150px] " src={require(`./../../../../assets/img/circuits/${RaceTable?.Races[0].Circuit.circuitId}.png`)} alt="" />
                     </div>
                 ) : (
                     <SectionLoading />

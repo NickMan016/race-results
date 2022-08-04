@@ -5,13 +5,15 @@ import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 
 export const Router = () => {
-    return(
+    return (
         <BrowserRouter>
             <Header />
-            <Routes>
-                <Route path="/" element={ <Content /> } />
-                <Route path="/drivers" element={ <Drivers /> } />
-            </Routes>
+            <div className="m-auto w-[90%] max-w-[1200px] mt-16 mb-5">
+                <Routes>
+                    <Route path="/" element={<Content />} />
+                    <Route path="/drivers" element={<Drivers />} />
+                </Routes>
+            </div>
             <Footer />
         </BrowserRouter>
     )

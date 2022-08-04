@@ -8,61 +8,60 @@ import { faFlag as faFlagRegular } from "@fortawesome/free-regular-svg-icons";
 
 export const SectionFlags = () => {
     return (
-        <div className="seccion">
-            <div className="titulo__seccion">Flags</div>
-            <div className="grid__seccion">
-                <div className="subgrid__seccion">
-                    <div className="info__seccion">
-                        <FontAwesomeIcon icon={faFlagCheckered} />
+        <div>
+            <div className="grid grid-cols-2 text-lg">
+                <div className="col-span-1">
+                    <div>
+                        <FontAwesomeIcon icon={faFlagCheckered} className="mr-2" />
                         Checkered Flag
                     </div>
-                    <div className="info__seccion">
-                        <FontAwesomeIcon icon={faFlag} className="red" />
+                    <div>
+                        <FontAwesomeIcon icon={faFlag} className="text-red-600 mr-2" />
                         Red Flag
                     </div>
-                    <div className="info__seccion">
-                        <FontAwesomeIcon icon={faFlag} className="yellow" />
+                    <div>
+                        <FontAwesomeIcon icon={faFlag} className="text-yellow-400 mr-2" />
                         Yellow Flag
                     </div>
-                    <div className="info__seccion">
-                        <FontAwesomeIcon icon={faFlag} className="yellow" />
-                        <FontAwesomeIcon icon={faFlag} className="yellow" />
+                    <div>
+                        <FontAwesomeIcon icon={faFlag} className="text-yellow-400 mr-2" />
+                        <FontAwesomeIcon icon={faFlag} className="text-yellow-400 mr-2" />
                         Double Yellow Flag
                     </div>
-                    <div className="info__seccion">
-                        <FontAwesomeIcon icon={faFlag} className="yellow" />
-                        <img src={SC_Icon} className="icon__flag" />
+                    <div>
+                        <FontAwesomeIcon icon={faFlag} className="text-yellow-400 mr-2" />
+                        <img src={SC_Icon} className="inline-block mr-2 h-4" />
                         Yellow Flag with SC
                     </div>
-                    <div className="info__seccion">
-                        <FontAwesomeIcon icon={faFlag} className="yellow" />
-                        <img src={VSC_Icon} className="icon__flag" />
+                    <div>
+                        <FontAwesomeIcon icon={faFlag} className="text-yellow-400 mr-2" />
+                        <img src={VSC_Icon} className="inline-block mr-2 h-4" />
                         Yellow Flag with VSC
                     </div>
                 </div>
-                <div className="subgrid__seccion">
-                    <div className="info__seccion">
-                        <FontAwesomeIcon icon={faFlag} className="green" />
+                <div className="col-span-1">
+                    <div>
+                        <FontAwesomeIcon icon={faFlag} className="text-green-600 mr-2" />
                         Green Flag
                     </div>
-                    <div className="info__seccion">
-                        <FontAwesomeIcon icon={faFlag} className="blue" />
+                    <div>
+                        <FontAwesomeIcon icon={faFlag} className="text-blue-600 mr-2" />
                         Blue Flag
                     </div>
-                    <div className="info__seccion">
-                        <img src={Stripes_Flag_Icon} className="icon__flag" />
+                    <div>
+                        <img src={Stripes_Flag_Icon} className="inline-block mr-2 h-4" />
                         Yellow Flag With Red Stripes
                     </div>
-                    <div className="info__seccion">
-                        <img src={Divided_Flag_Icon} className="icon__flag" />
+                    <div>
+                        <img src={Divided_Flag_Icon} className="inline-block mr-2 h-4" />
                         Divided Flag
                     </div>
-                    <div className="info__seccion">
-                        <FontAwesomeIcon icon={faFlag} />
+                    <div>
+                        <FontAwesomeIcon icon={faFlag} className="mr-2" />
                         Black Flag
                     </div>
-                    <div className="info__seccion">
-                        <FontAwesomeIcon icon={faFlagRegular} />
+                    <div>
+                        <FontAwesomeIcon icon={faFlagRegular} className="mr-2" />
                         White Flag
                     </div>
                 </div>

@@ -4,7 +4,7 @@ import { SectionRace } from './components/SeccionRace';
 import { SectionDriverStanding } from './components/SectionDriverStanding';
 import { SectionConstructorStanding } from './components/SectionConstructorStanding';
 import { SectionFlags } from './components/SectionFlags';
-import './Content.css'
+import { Section } from '../Section';
 
 export const Content = () => {
     const [showFlags, setShowFlags] = useState(true);
@@ -16,12 +16,27 @@ export const Content = () => {
             else
                 setShowFlags(true)
         }
-        
+
     }, [])
 
     return (
-        <div className="contenedor grid__contenedor">
-            <div className="principal__contenedor">
+        <>
+            <div className="grid grid-cols-3 gap-5">
+                <div className="col-span-2">
+                    <Section title='Next Race Info' content={<SectionRace />} />
+                    <Section title='Result of Last Race' content={<SectionResults />} />
+                    {
+                        showFlags ? (
+                            <Section title='Flags' content={<SectionFlags />} />
+                        ) : undefined
+                    }
+                </div>
+                <div className="col-span-1">
+                    <Section title='Driver Championship' content={<SectionDriverStanding />} />
+                    <Section title='Constructor Championship' content={<SectionConstructorStanding />} />
+                </div>
+            </div>
+            {/* <div className="principal__contenedor">
                 <SectionRace title='Next Race Info' />
                 <SectionResults title='Result of Last Race' />
                 {
@@ -29,11 +44,11 @@ export const Content = () => {
                         <SectionFlags />
                     ) : undefined
                 }
-            </div>
-            <div className="sidebar__contenedor">
+            </div> */}
+            {/* <div className="sidebar__contenedor">
                 <SectionDriverStanding />
                 <SectionConstructorStanding />
-            </div>
-        </div>
+            </div> */}
+        </>
     )
 }

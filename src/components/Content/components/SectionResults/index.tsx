@@ -5,12 +5,9 @@ import { F1Context } from "../../../../context/F1DB/F1Context"
 import { Result } from "../../../../interfaces/F1Interfaces"
 import { Country } from "../../../../interfaces/CountriesInterfaces"
 import { SectionLoading } from "../SectionLoading"
+import { TableData } from "../TableData"
 
-interface propsSection {
-    title: string
-}
-
-export const SectionResults = ({ title }: propsSection) => {
+export const SectionResults = () => {
 
     const INITIAL_STATE: Country = {
         name: "",
@@ -44,69 +41,63 @@ export const SectionResults = ({ title }: propsSection) => {
         <>
             {
                 isLoad ? (
-                    <div className="seccion">
-                        <div className="titulo__seccion">{title}</div>
-                        <div className="info__seccion">
+                    <div className="text-lg">
+                        <div>
                             {`${RaceTable?.Races[0].Circuit.circuitName} - ${RaceTable?.Races[0].Circuit.Location.locality}, ${RaceTable?.Races[0].Circuit.Location.country}`}
-                            <img className="flag" src={flags.svg} alt={`${RaceTable?.Races[0].Circuit.Location.country}'s flag`} />
+                            <img className="inline-block mx-2 h-4" src={flags.svg} alt={`${RaceTable?.Races[0].Circuit.Location.country}'s flag`} />
                         </div>
-                        <div className="info__seccion">
-                            <span>
-                                <FontAwesomeIcon icon={faCircle} className="finished" />
+                        <div>
+                            <span className="mr-4">
+                                <FontAwesomeIcon icon={faCircle} className="mr-2 text-green-600" />
                                 Finished
                             </span>
-                            <span>
-                                <FontAwesomeIcon icon={faCircle} className="dnf" />
+                            <span className="mr-4">
+                                <FontAwesomeIcon icon={faCircle} className="mr-2 text-red-600" />
                                 DNF
                             </span>
-                            <span>
-                                <FontAwesomeIcon icon={faCircle} className="fastest__lap" />
+                            <span className="mr-4">
+                                <FontAwesomeIcon icon={faCircle} className="mr-2 text-fuchsia-600" />
                                 Fastest Lap
                             </span>
                         </div>
-                        <div className="contenedor__tabla">
-                            <table className="tabla">
-                                <thead>
-                                    <tr className="thead">
-                                        <th className="center">Pos.</th>
-                                        <th>Driver</th>
-                                        <th>Team</th>
-                                        <th>Time</th>
-                                        <th className="center">Status</th>
-                                        <th className="center">Points</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {RaceTable?.Races[0].Results?.map((value: Result, index) => {
-                                        let status, time;
+                        <TableData tHead={[
+                            { text: 'Pos.', center: true },
+                            { text: 'Driver', center: false },
+                            { text: 'Team', center: false },
+                            { text: 'Time', center: false },
+                            { text: 'Status', center: true },
+                            { text: 'Points', center: true }
+                        ]} tBody={
+                            <tbody>
+                                {RaceTable?.Races[0].Results?.map((value: Result, index) => {
+                                    let status, time;
 
-                                        if (value.FastestLap?.rank === '1') {
-                                            status = <>
-                                                <FontAwesomeIcon icon={faCircle} className="finished" />
-                                                <FontAwesomeIcon icon={faCircle} className="fastest__lap" />
-                                            </>;
-                                            time = value.Time.time;
-                                        } else if (value.status === 'Finished' || value.status === '+1 Lap' || value.status === '+2 Laps' || value.status === '+3 Laps' || value.status === '+4 Laps' || value.status === '+5 Laps' || value.status === '+6 Laps' || value.status === '+7 Laps' || value.status === '+8 Laps' || value.status === '+9 Laps') {
-                                            status = <FontAwesomeIcon icon={faCircle} className="finished" />;
-                                            time = value.Time?.time || value.status;
-                                        } else {
-                                            status = <FontAwesomeIcon icon={faCircle} className="dnf" />;
-                                            time = 'No Time'
-                                        }
-                                        return (
-                                            <tr key={index}>
-                                                <td className="center">{value.position}</td>
-                                                <td>{`${value.Driver.givenName} ${value.Driver.familyName}`}</td>
-                                                <td>{value.Constructor.name}</td>
-                                                <td>{time}</td>
-                                                <td className="center">{status}</td>
-                                                <td className="center">{value.points}</td>
-                                            </tr>
-                                        )
-                                    })}
-                                </tbody>
-                            </table>
-                        </div>
+                                    if (value.FastestLap?.rank === '1') {
+                                        status = <>
+                                            <FontAwesomeIcon icon={faCircle} className="text-green-600 mr-2" />
+                                            <FontAwesomeIcon icon={faCircle} className="text-fuchsia-600" />
+                                        </>;
+                                        time = value.Time.time;
+                                    } else if (value.status === 'Finished' || value.status === '+1 Lap' || value.status === '+2 Laps' || value.status === '+3 Laps' || value.status === '+4 Laps' || value.status === '+5 Laps' || value.status === '+6 Laps' || value.status === '+7 Laps' || value.status === '+8 Laps' || value.status === '+9 Laps') {
+                                        status = <FontAwesomeIcon icon={faCircle} className="text-green-600" />;
+                                        time = value.Time?.time || value.status;
+                                    } else {
+                                        status = <FontAwesomeIcon icon={faCircle} className="text-red-600" />;
+                                        time = 'No Time'
+                                    }
+                                    return (
+                                        <tr className="border-gray-700 border-b-[1px] hover:bg-gray-400" key={index}>
+                                            <td className="p-2 text-center">{value.position}</td>
+                                            <td className="p-2 ">{`${value.Driver.givenName} ${value.Driver.familyName}`}</td>
+                                            <td className="p-2 ">{value.Constructor.name}</td>
+                                            <td className="p-2 ">{time}</td>
+                                            <td className="p-2 text-center">{status}</td>
+                                            <td className="p-2 text-center">{value.points}</td>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        } />
                     </div>
                 ) : (
                     <SectionLoading />

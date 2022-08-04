@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { F1Context } from "../../../../context/F1DB/F1Context"
 import { SectionLoading } from "../SectionLoading"
+import { TableData } from "../TableData";
 
 
 export const SectionDriverStanding = () => {
@@ -20,34 +21,28 @@ export const SectionDriverStanding = () => {
         <>
             {
                 isLoad ? (
-                    <div className="seccion">
-                        <div className="titulo__seccion">Driver Championship</div>
-                        <div className="contenedor__tabla">
-                            <table className="tabla">
-                                <thead>
-                                    <tr className="thead">
-                                        <th className="center">Pos.</th>
-                                        <th>Driver</th>
-                                        <th>Team</th>
-                                        <th className="center">Pts.</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        StandingsTable?.StandingsLists[0].DriverStandings?.map((value, index) => {
-                                            return (
-                                                <tr key={index}>
-                                                    <td className="center">{value.position}</td>
-                                                    <td>{`${value.Driver.givenName.slice(0, 1)}. ${value.Driver.familyName}`}</td>
-                                                    <td>{value.Constructors[0].name}</td>
-                                                    <td className="center">{value.points}</td>
-                                                </tr>
-                                            )
-                                        })
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
+                    <div className="mt-2">
+                        <TableData tHead={[
+                            { text: 'Pos.', center: true },
+                            { text: 'Driver', center: false },
+                            { text: 'Team', center: false },
+                            { text: 'Pts.', center: true }
+                        ]} tBody={
+                            <tbody>
+                                {
+                                    StandingsTable?.StandingsLists[0].DriverStandings?.map((value, index) => {
+                                        return (
+                                            <tr className="border-gray-700 border-b-[1px] hover:bg-gray-400" key={index}>
+                                                <td className="p-2 text-center">{value.position}</td>
+                                                <td className="p-2 ">{`${value.Driver.givenName.slice(0, 1)}. ${value.Driver.familyName}`}</td>
+                                                <td className="p-2 ">{value.Constructors[0].name}</td>
+                                                <td className="p-2 text-center">{value.points}</td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
+                        } />
                     </div>
                 ) : (
                     <SectionLoading />
