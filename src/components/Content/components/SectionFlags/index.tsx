@@ -5,11 +5,12 @@ import Stripes_Flag_Icon from "./../../../../assets/img/Stripes_Flag.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFlag, faFlagCheckered } from "@fortawesome/free-solid-svg-icons";
 import { faFlag as faFlagRegular } from "@fortawesome/free-regular-svg-icons";
+import { Section } from "../../../Section";
 
 export const SectionFlags = () => {
     return (
-        <div>
-            <div className="grid grid-cols-2 text-lg">
+        <Section title="Flags" content={
+            <div className="grid grid-cols-2 mt-2 text-lg">
                 <div className="col-span-1">
                     <div>
                         <FontAwesomeIcon icon={faFlagCheckered} className="mr-2" />
@@ -66,6 +67,6 @@ export const SectionFlags = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        } />
     )
 }

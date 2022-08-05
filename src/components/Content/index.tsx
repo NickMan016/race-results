@@ -23,32 +23,19 @@ export const Content = () => {
         <>
             <div className="grid grid-cols-3 gap-5">
                 <div className="col-span-2">
-                    <Section title='Next Race Info' content={<SectionRace />} />
-                    <Section title='Result of Last Race' content={<SectionResults />} />
+                    <SectionRace />
+                    <SectionResults />
                     {
                         showFlags ? (
-                            <Section title='Flags' content={<SectionFlags />} />
+                            <SectionFlags />
                         ) : undefined
                     }
                 </div>
                 <div className="col-span-1">
-                    <Section title='Driver Championship' content={<SectionDriverStanding />} />
-                    <Section title='Constructor Championship' content={<SectionConstructorStanding />} />
+                    <SectionDriverStanding />
+                    <SectionConstructorStanding />
                 </div>
             </div>
-            {/* <div className="principal__contenedor">
-                <SectionRace title='Next Race Info' />
-                <SectionResults title='Result of Last Race' />
-                {
-                    showFlags ? (
-                        <SectionFlags />
-                    ) : undefined
-                }
-            </div> */}
-            {/* <div className="sidebar__contenedor">
-                <SectionDriverStanding />
-                <SectionConstructorStanding />
-            </div> */}
         </>
     )
 }
