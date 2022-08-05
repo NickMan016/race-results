@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import { F1Context } from "../../../../context/F1DB/F1Context"
 import { Section } from "../../../Section";
 import { SectionLoading } from "../SectionLoading"
-import { TableData } from "../TableData";
+import { TableData } from "../../../TableData";
 
 
 export const SectionConstructorStanding = () => {

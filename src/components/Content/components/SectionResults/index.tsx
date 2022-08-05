@@ -5,7 +5,7 @@ import { F1Context } from "../../../../context/F1DB/F1Context"
 import { Result } from "../../../../interfaces/F1Interfaces"
 import { Country } from "../../../../interfaces/CountriesInterfaces"
 import { SectionLoading } from "../SectionLoading"
-import { TableData } from "../TableData"
+import { TableData } from "../../../TableData"
 import { Section } from "../../../Section"
 
 export const SectionResults = () => {

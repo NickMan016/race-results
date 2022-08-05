@@ -4,7 +4,6 @@ import { SectionRace } from './components/SeccionRace';
 import { SectionDriverStanding } from './components/SectionDriverStanding';
 import { SectionConstructorStanding } from './components/SectionConstructorStanding';
 import { SectionFlags } from './components/SectionFlags';
-import { Section } from '../Section';
 
 export const Content = () => {
     const [showFlags, setShowFlags] = useState(true);
