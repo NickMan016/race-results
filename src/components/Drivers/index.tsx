@@ -2,8 +2,9 @@ import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { F1Context } from '../../context/F1DB/F1Context';
 import { useForm } from '../../hooks/useForm';
 import { SectionLoading } from '../Content/components/SectionLoading';
+import { Section } from '../Section';
+import { TableData } from '../TableData';
 import { TableLoading } from './components/TableLoading';
-import './Drivers.css'
 
 interface FormData {
     season: string
@@ -74,53 +75,49 @@ export const Drivers = () => {
     }
 
     return (
-        <div className="contenedor">
+        <div className="mt-[5.25rem] mb-10">
             {
                 isLoad ? (
-                    <div className="seccion">
-                        <div className="titulo__seccion">Drivers</div>
-                        <form className="formulario__filtros">
-                            <div className="form__group">
-                                <label className="label__input" htmlFor="season">Season</label>
-                                <select className="form__input" value={season} onChange={(e) => { handleChange(e) }} name="season" id="season">
-                                    <option value="current">Current</option>
-                                    {
-                                        years.map((value, index) => (
-                                            <option key={index} value={value}>{value}</option>
-                                        ))
-                                    }
-                                </select>
-                            </div>
+                    <Section title="Drivers" content={
+                        <>
+                            <form className="grid grid-cols-8 gap-4 py-2">
+                                <div className="col-span-2">
+                                    <label className="font-bold block" htmlFor="season">Season</label>
+                                    <select className="block w-full mt-1 p-2 bg-transparent border-gray-400 border-[3px]" value={season} onChange={(e) => { handleChange(e) }} name="season" id="season">
+                                        <option value="current">Current</option>
+                                        {
+                                            years.map((value, index) => (
+                                                <option key={index} value={value}>{value}</option>
+                                            ))
+                                        }
+                                    </select>
+                                </div>
 
-                            <div className="form__group">
-                                <label className="label__input" htmlFor="">Team</label>
-                                <select className="form__input" value={team} onChange={handleChange} name="team" id="">
-                                    <option value="0">All</option>
-                                    {
-                                        ConstructorTable?.Constructors.map((value, index) => (
-                                            <option key={index} value={value.constructorId}>{value.name}</option>
-                                        ))
-                                    }
-                                </select>
-                            </div>
-                        </form>
-                        <div className="contenedor__tabla">
-                            <table className="tabla">
-                                <thead>
-                                    <tr className="thead">
-                                        <th></th>
-                                        <th>Driver</th>
-                                        <th>Number</th>
-                                        <th>Nationality</th>
-                                    </tr>
-                                </thead>
+                                <div className="col-span-2">
+                                    <label className="font-bold block" htmlFor="">Team</label>
+                                    <select className="block w-full mt-1 p-2 bg-transparent border-gray-400 border-[3px]" value={team} onChange={handleChange} name="team" id="">
+                                        <option value="0">All</option>
+                                        {
+                                            ConstructorTable?.Constructors.map((value, index) => (
+                                                <option key={index} value={value.constructorId}>{value.name}</option>
+                                            ))
+                                        }
+                                    </select>
+                                </div>
+                            </form>
+                            <TableData tHead={[
+                                { text: '', center: true },
+                                { text: 'Driver', center: false },
+                                { text: 'Number', center: false },
+                                { text: 'Nationality', center: false },
+                            ]} tBody={
                                 <>
                                     {
                                         isLoadTable ? (
                                             <tbody>
                                                 {
                                                     DriverTable?.Drivers.length === 0 ? (
-                                                        <tr className="fila__error">
+                                                        <tr className="text-center">
                                                             <td colSpan={4}>No drivers found with your search</td>
                                                         </tr>
                                                     ) : (
@@ -128,13 +125,13 @@ export const Drivers = () => {
                                                             {
 
                                                                 DriverTable?.Drivers.map((value, index) => (
-                                                                    <tr key={index}>
+                                                                    <tr className="border-gray-700 border-b-[1px] hover:bg-gray-400" key={index}>
                                                                         <td className="col__img">
                                                                             {/* <img src={require(`./../../assets/img/drivers/${value.driverId}.png`) || require('./../../assets/img/generic.png')} alt={`Foto de ${value.driverId}`} /> */}
                                                                         </td>
-                                                                        <td>{`${value.givenName} ${value.familyName}`}</td>
-                                                                        <td>{value.permanentNumber || 'Not Number'}</td>
-                                                                        <td>{value.nationality}</td>
+                                                                        <td className="p-2">{`${value.givenName} ${value.familyName}`}</td>
+                                                                        <td className="p-2">{value.permanentNumber || 'Not Number'}</td>
+                                                                        <td className="p-2">{value.nationality}</td>
                                                                     </tr>
                                                                 ))
                                                             }
@@ -147,14 +144,14 @@ export const Drivers = () => {
                                         )
                                     }
                                 </>
-                            </table>
-                        </div>
-                    </div>
+                            } />
+                        </>
+                    } />
                 ) : (
                     <SectionLoading />
                 )
             }
-        </div >
+        </div>
     )
 
 }

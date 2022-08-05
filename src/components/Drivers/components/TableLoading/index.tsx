@@ -20,15 +20,15 @@ export const TableLoading = ({ image, columns }: PropsTableLoading) => {
         <tbody>
             {
                 filas.map((value, index) => (
-                    <tr key={index} className="skeleton__fila">
+                    <tr key={index} className="animate-skeleton">
                         {
                             image ? (
-                                <td className="columna__foto"><div className="skeleton skeleton__foto"></div></td>
+                                <td className="w-1/12"><div className="bg-gray-400 h-10 w-10 m-auto rounded-full"></div></td>
                             ) : undefined
                         }
                         {
                             columnas.map((value, index) => (
-                                <td key={index}><div className="skeleton skeleton__texto"></div></td>
+                                <td className="py-4 pl-2 pr-4" key={index}><div className="bg-gray-400 w-full h-4"></div></td>
                             ))
                         }
                     </tr>
