@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react"
 import { F1Context } from "../../../../context/F1DB/F1Context"
 import { Result } from "../../../../interfaces/F1Interfaces"
 import { Country } from "../../../../interfaces/CountriesInterfaces"
-import { SectionLoading } from "../SectionLoading"
+import { SectionLoading } from "../../../Section/components/SectionLoading"
 import { TableData } from "../../../TableData"
 import { Section } from "../../../Section"
 
@@ -88,7 +88,7 @@ export const SectionResults = () => {
                                             time = 'No Time'
                                         }
                                         return (
-                                            <tr className="border-gray-700 border-b-[1px] hover:bg-gray-400" key={index}>
+                                            <tr className="border-gray-700 border-b-[1px] hover:bg-gray-300 dark:border-gray-500 dark:hover:bg-gray-700" key={index}>
                                                 <td className="p-2 text-center">{value.position}</td>
                                                 <td className="p-2 ">{`${value.Driver.givenName} ${value.Driver.familyName}`}</td>
                                                 <td className="p-2 ">{value.Constructor.name}</td>

@@ -1,10 +1,10 @@
 import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { F1Context } from '../../context/F1DB/F1Context';
 import { useForm } from '../../hooks/useForm';
-import { SectionLoading } from '../Content/components/SectionLoading';
+import { SectionLoading } from '../Section/components/SectionLoading';
 import { Section } from '../Section';
 import { TableData } from '../TableData';
-import { TableLoading } from './components/TableLoading';
+import { TableLoading } from '../TableData/components/TableLoading';
 
 interface FormData {
     season: string
@@ -80,10 +80,10 @@ export const Drivers = () => {
                 isLoad ? (
                     <Section title="Drivers" content={
                         <>
-                            <form className="grid grid-cols-8 gap-4 py-2">
-                                <div className="col-span-2">
+                            <form className="grid grid-cols-8 gap-2 sm:gap-4 py-2">
+                                <div className="col-span-8 sm:col-span-4 lg:col-span-3 xl:col-span-2">
                                     <label className="font-bold block" htmlFor="season">Season</label>
-                                    <select className="block w-full mt-1 p-2 bg-transparent border-gray-400 border-[3px]" value={season} onChange={(e) => { handleChange(e) }} name="season" id="season">
+                                    <select className="block w-full mt-1 p-2 bg-transparent border-gray-400 border-[3px] rounded-md dark:border-gray-700 dark:bg-gray-900" value={season} onChange={(e) => { handleChange(e) }} name="season" id="season">
                                         <option value="current">Current</option>
                                         {
                                             years.map((value, index) => (
@@ -93,9 +93,9 @@ export const Drivers = () => {
                                     </select>
                                 </div>
 
-                                <div className="col-span-2">
+                                <div className="col-span-8 sm:col-span-4 lg:col-span-3 xl:col-span-2">
                                     <label className="font-bold block" htmlFor="">Team</label>
-                                    <select className="block w-full mt-1 p-2 bg-transparent border-gray-400 border-[3px]" value={team} onChange={handleChange} name="team" id="">
+                                    <select className="block w-full mt-1 p-2 bg-transparent border-gray-400 border-[3px] rounded-md dark:border-gray-700 dark:bg-gray-900" value={team} onChange={handleChange} name="team" id="">
                                         <option value="0">All</option>
                                         {
                                             ConstructorTable?.Constructors.map((value, index) => (
@@ -125,7 +125,7 @@ export const Drivers = () => {
                                                             {
 
                                                                 DriverTable?.Drivers.map((value, index) => (
-                                                                    <tr className="border-gray-700 border-b-[1px] hover:bg-gray-400" key={index}>
+                                                                    <tr className="border-gray-700 border-b-[1px] hover:bg-gray-300 dark:border-gray-500 dark:hover:bg-gray-700" key={index}>
                                                                         <td className="col__img">
                                                                             {/* <img src={require(`./../../assets/img/drivers/${value.driverId}.png`) || require('./../../assets/img/generic.png')} alt={`Foto de ${value.driverId}`} /> */}
                                                                         </td>

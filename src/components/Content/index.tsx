@@ -10,7 +10,7 @@ export const Content = () => {
 
     useEffect(() => {
         window.onresize = () => {
-            if (window.innerWidth <= 1200)
+            if (window.innerWidth <= 1024)
                 setShowFlags(false)
             else
                 setShowFlags(true)
@@ -20,8 +20,8 @@ export const Content = () => {
 
     return (
         <>
-            <div className="grid grid-cols-3 gap-5">
-                <div className="col-span-2">
+            <div className="grid grid-cols-3 gap-0 lg:gap-5">
+                <div className="col-span-3 lg:col-span-2">
                     <SectionRace />
                     <SectionResults />
                     {
@@ -30,7 +30,7 @@ export const Content = () => {
                         ) : undefined
                     }
                 </div>
-                <div className="col-span-1">
+                <div className="col-span-3 lg:col-span-1">
                     <SectionDriverStanding />
                     <SectionConstructorStanding />
                 </div>

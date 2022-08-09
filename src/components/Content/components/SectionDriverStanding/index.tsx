@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { F1Context } from "../../../../context/F1DB/F1Context"
 import { Section } from "../../../Section";
-import { SectionLoading } from "../SectionLoading"
+import { SectionLoading } from "../../../Section/components/SectionLoading"
 import { TableData } from "../../../TableData";
 
 
@@ -34,7 +34,7 @@ export const SectionDriverStanding = () => {
                                     {
                                         StandingsTable?.StandingsLists[0].DriverStandings?.map((value, index) => {
                                             return (
-                                                <tr className="border-gray-700 border-b-[1px] hover:bg-gray-400" key={index}>
+                                                <tr className="border-gray-700 border-b-[1px] hover:bg-gray-300 dark:border-gray-500 dark:hover:bg-gray-700" key={index}>
                                                     <td className="p-2 text-center">{value.position}</td>
                                                     <td className="p-2 ">{`${value.Driver.givenName.slice(0, 1)}. ${value.Driver.familyName}`}</td>
                                                     <td className="p-2 ">{value.Constructors[0].name}</td>

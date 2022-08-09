@@ -4,7 +4,7 @@ import { Country } from "../../../../interfaces/CountriesInterfaces"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons"
 import { FormatDate } from "../../../../hooks/FormatDate"
-import { SectionLoading } from "../SectionLoading"
+import { SectionLoading } from "../../../Section/components/SectionLoading"
 import { Section } from "../../../Section"
 
 export const SectionRace = () => {
@@ -43,7 +43,7 @@ export const SectionRace = () => {
                 isLoad ? (
                     <Section title="Next Race Info" content={
                         <div className="relative grid grid-cols-2 text-lg">
-                            <div>
+                            <div className="col-span-2 sm:col-span-1">
                                 <div>
                                     {`${RaceTable?.Races[0].Circuit.circuitName} - ${RaceTable?.Races[0].Circuit.Location.locality}, ${RaceTable?.Races[0].Circuit.Location.country}`}
                                     <img className="inline-block mx-2 h-4" src={flags.svg} alt={`${RaceTable?.Races[0].Circuit.Location.country}'s flag`} />
@@ -90,7 +90,7 @@ export const SectionRace = () => {
                                     )
                                 }
                             </div>
-                            <img className="block m-auto h-[150px] " src={require(`./../../../../assets/img/circuits/${RaceTable?.Races[0].Circuit.circuitId}.png`)} alt="" />
+                            <img className="block my-4 mx-auto h-[150px] col-span-2 sm:my-0 sm:col-span-1" src={require(`./../../../../assets/img/circuits/${RaceTable?.Races[0].Circuit.circuitId}.png`)} alt="" />
                         </div>
                     } />
                 ) : (
