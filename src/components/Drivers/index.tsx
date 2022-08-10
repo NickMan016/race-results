@@ -83,7 +83,7 @@ export const Drivers = () => {
                             <form className="grid grid-cols-8 gap-2 sm:gap-4 py-2">
                                 <div className="col-span-8 sm:col-span-4 lg:col-span-3 xl:col-span-2">
                                     <label className="font-bold block" htmlFor="season">Season</label>
-                                    <select className="block w-full mt-1 p-2 bg-transparent border-gray-400 border-[3px] rounded-md dark:border-gray-700 dark:bg-gray-900" value={season} onChange={(e) => { handleChange(e) }} name="season" id="season">
+                                    <select className="block outline-none w-full mt-1 p-2 bg-transparent border-gray-400 border-[3px] rounded-md dark:border-gray-700 dark:bg-gray-900" value={season} onChange={(e) => { handleChange(e) }} name="season" id="season">
                                         <option value="current">Current</option>
                                         {
                                             years.map((value, index) => (
@@ -95,7 +95,7 @@ export const Drivers = () => {
 
                                 <div className="col-span-8 sm:col-span-4 lg:col-span-3 xl:col-span-2">
                                     <label className="font-bold block" htmlFor="">Team</label>
-                                    <select className="block w-full mt-1 p-2 bg-transparent border-gray-400 border-[3px] rounded-md dark:border-gray-700 dark:bg-gray-900" value={team} onChange={handleChange} name="team" id="">
+                                    <select className="block outline-none w-full mt-1 p-2 bg-transparent border-gray-400 border-[3px] rounded-md dark:border-gray-700 dark:bg-gray-900" value={team} onChange={handleChange} name="team" id="">
                                         <option value="0">All</option>
                                         {
                                             ConstructorTable?.Constructors.map((value, index) => (
