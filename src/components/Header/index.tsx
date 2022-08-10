@@ -51,7 +51,7 @@ export const Header = () => {
                     }}><FontAwesomeIcon icon={darkMode ? faSun : faMoon} /></li>
                 </ul>
                 <div className={`block fixed bg-white w-[250px] h-full top-[42px] list-none transition-all duration-300 shadow-md shadow-gray-500 dark:bg-gray-900 dark:shadow-none sm:hidden ${activeMenu ? 'right-0' : 'right-[-250px]'}`}>
-                    <div className="h-4/5 flex flex-col justify-between">
+                    <div className="h-[calc(100%-40px)] flex flex-col justify-between">
                         <ul className="">
                             {
                                 Routes.map((value, index) => (
