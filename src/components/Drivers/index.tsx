@@ -127,11 +127,11 @@ export const Drivers = () => {
                                                                 DriverTable?.Drivers.map((value, index) => (
                                                                     <tr className="border-gray-700 border-b-[1px] hover:bg-gray-300 dark:border-gray-500 dark:hover:bg-gray-700" key={index}>
                                                                         <td className="col__img">
-                                                                            {/* <img src={require(`./../../assets/img/drivers/${value.driverId}.png`) || require('./../../assets/img/generic.png')} alt={`Foto de ${value.driverId}`} /> */}
+                                                                            {/* <img className="h-8 w-8 m-auto rounded-full" src={require(`./../../assets/img/drivers/${value.driverId}.png`)} alt={`Foto de ${value.driverId}`} /> */}
                                                                         </td>
-                                                                        <td className="p-2">{`${value.givenName} ${value.familyName}`}</td>
-                                                                        <td className="p-2">{value.permanentNumber || 'Not Number'}</td>
-                                                                        <td className="p-2">{value.nationality}</td>
+                                                                        <td className="p-3">{`${value.givenName} ${value.familyName}`}</td>
+                                                                        <td className="p-3">{value.permanentNumber || 'Not Number'}</td>
+                                                                        <td className="p-3">{value.nationality}</td>
                                                                     </tr>
                                                                 ))
                                                             }
