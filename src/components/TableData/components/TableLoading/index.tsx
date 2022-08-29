@@ -23,7 +23,7 @@ export const TableLoading = ({ image, columns }: PropsTableLoading) => {
                     <tr key={index}>
                         {
                             image ? (
-                                <td className="w-1/12"><div className="animate-skeleton bg-gray-400 h-10 w-10 m-auto rounded-full dark:bg-gray-700"></div></td>
+                                <td className="w-1/12"><div className="animate-skeleton bg-gray-400 h-8 w-8 m-auto rounded-full dark:bg-gray-700"></div></td>
                             ) : undefined
                         }
                         {
