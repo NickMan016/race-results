@@ -27,6 +27,7 @@ export const F1Provider = ({ children }: ProviderProps) => {
 
     // const [stateRaces, dispatch] = useReducer(F1Reducer, INITIAL_STATE);
     const [stateResults, setStateResults] = useState(INITIAL_STATE);
+    const [stateQualifying, setStateQualifying] = useState(INITIAL_STATE);
     const [stateRace, setStateRace] = useState(INITIAL_STATE);
     const [stateDriverStanding, setStateDriverStanding] = useState(INITIAL_STATE);
     const [stateConstructorStanding, setStateConstructorStanding] = useState(INITIAL_STATE);
@@ -41,6 +42,22 @@ export const F1Provider = ({ children }: ProviderProps) => {
             setStateResults(data)
             getCountry(data.RaceTable?.Races[0].Circuit.Location.country || '', setCountry)
             return true;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    const getQualifying = async ( query: string, setCountry: Dispatch<SetStateAction<Country>> ) => {
+        try {
+            const response: any = await apiF1DB(query)
+            const data: MRData = await response.data.MRData;
+            if (data.RaceTable?.Races.length === 0)
+                return false
+            else {
+                setStateQualifying(data)
+                getCountry(data.RaceTable?.Races[0].Circuit.Location.country || '', setCountry)
+                return true;
+            }
         } catch (error) {
             return false;
         }
@@ -105,12 +122,14 @@ export const F1Provider = ({ children }: ProviderProps) => {
     return (
         <F1Context.Provider value={{
             stateResults,
+            stateQualifying,
             stateRace,
             stateDriverStanding,
             stateConstructorStanding,
             stateConstructors,
             stateDrivers,
             getResults,
+            getQualifying,
             getRace,
             getDriverStanding,
             getConstructorStanding,
