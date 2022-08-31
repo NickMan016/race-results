@@ -3,6 +3,7 @@ import { Content } from "../components/Content";
 import { Drivers } from "../components/Drivers";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
+import { Teams } from "../components/Teams";
 
 export const Router = () => {
     return (
@@ -12,6 +13,7 @@ export const Router = () => {
                 <Routes>
                     <Route path="/" element={<Content />} />
                     <Route path="/drivers" element={<Drivers />} />
+                    <Route path="/teams" element={<Teams />} />
                 </Routes>
             </div>
             <Footer />
