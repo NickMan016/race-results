@@ -8,7 +8,7 @@ import { SectionQualifying } from './components/SectionQualifying';
 
 export const Content = () => {
     const [showFlags, setShowFlags] = useState(true);
-    const [showSection, setShowSection] = useState(false);
+    const [showSection, setShowSection] = useState(true);
 
     useEffect(() => {
         window.onresize = () => {

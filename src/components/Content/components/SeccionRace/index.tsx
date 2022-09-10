@@ -34,6 +34,7 @@ export const SectionRace = () => {
 
         setTimeout(() => {
             response.then(value => setIsLoad(value))
+            
         }, 2000);
     }, []);
 
@@ -41,7 +42,7 @@ export const SectionRace = () => {
         <>
             {
                 isLoad ? (
-                    <Section title="Next Race Info" content={
+                    <Section title={`Race Info`} content={
                         <div className="relative grid grid-cols-2 text-lg">
                             <div className="col-span-2 sm:col-span-1">
                                 <div>
