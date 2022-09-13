@@ -12,7 +12,7 @@ export const Header = () => {
     const Routes = [
         { name: 'Drivers', route: '/drivers' },
         { name: 'Teams', route: '/teams' },
-        { name: 'Races', route: '/races' },
+        { name: 'Schedule', route: '/schedule' },
     ]
 
     useEffect(() => {

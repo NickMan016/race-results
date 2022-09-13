@@ -3,6 +3,7 @@ import { Content } from "../components/Content";
 import { Drivers } from "../components/Drivers";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
+import { Schedule } from "../components/Schedule";
 import { Teams } from "../components/Teams";
 
 export const Router = () => {
@@ -14,6 +15,7 @@ export const Router = () => {
                     <Route path="/" element={<Content />} />
                     <Route path="/drivers" element={<Drivers />} />
                     <Route path="/teams" element={<Teams />} />
+                    <Route path="/schedule" element={<Schedule />} />
                 </Routes>
             </div>
             <Footer />
