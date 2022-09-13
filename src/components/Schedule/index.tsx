@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { fa1, fa2, fa3, faCalendarDays, faChevronCircleLeft, faChevronCircleRight, faClock } from "@fortawesome/free-solid-svg-icons"
-import { Link } from "react-router-dom"
 import { Section } from "../Section"
 import { MouseEvent, useContext, useEffect, useState } from "react"
 import { F1Context } from "../../context/F1DB/F1Context"
@@ -45,7 +44,7 @@ export const Schedule = () => {
 
         setIsLoad(false)
         let responseRace: Promise<boolean>;
-        if (name == '+') {
+        if (name === '+') {
             responseRace = getRaceWithResults(`current/${parseInt(RaceTable?.round || '1') + 1}`, setStateCountry)
         } else {
             responseRace = getRaceWithResults(`current/${parseInt(RaceTable?.round || '1') - 1}`, setStateCountry)
