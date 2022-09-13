@@ -157,7 +157,7 @@ export const Schedule = () => {
                                                         if (value.FastestLap?.rank === '1') {
                                                             return (
                                                                 <div className="my-4 flex items-center" key={index}>
-                                                                    <div className="bg-fuchsia-600 w-6 h-6 mr-4 flex items-center justify-center rounded"><FontAwesomeIcon icon={faClock} /></div>
+                                                                    <div className="bg-fuchsia-600 w-6 h-6 mr-4 flex items-center justify-center rounded"><FontAwesomeIcon className="text-white" icon={faClock} /></div>
                                                                     <div className="mr-4">
                                                                         <img className="h-10 w-10 rounded-full" src={require(`./../../assets/img/drivers/${value.Driver.driverId}.png`)} alt={`Foto de ${value.Driver.driverId}`} />
                                                                     </div>
