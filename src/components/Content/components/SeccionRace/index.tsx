@@ -34,7 +34,7 @@ export const SectionRace = () => {
 
         setTimeout(() => {
             response.then(value => setIsLoad(value))
-            
+
         }, 2000);
     }, []);
 
@@ -42,12 +42,15 @@ export const SectionRace = () => {
         <>
             {
                 isLoad ? (
-                    <Section title={`Race Info`} content={
-                        <div className="relative grid grid-cols-2 text-lg">
+                    <Section title={RaceTable?.Races[0].raceName || ''} content={
+                        <div className="relative grid grid-cols-2">
                             <div className="col-span-2 sm:col-span-1">
-                                <div>
-                                    {`${RaceTable?.Races[0].Circuit.circuitName} - ${RaceTable?.Races[0].Circuit.Location.locality}, ${RaceTable?.Races[0].Circuit.Location.country}`}
-                                    <img className="inline-block mx-2 h-4" src={flags.svg} alt={`${RaceTable?.Races[0].Circuit.Location.country}'s flag`} />
+                                <div className="my-1">
+                                    <div>{`${RaceTable?.Races[0].Circuit.circuitName}`}</div>
+                                    <div>
+                                        {`${RaceTable?.Races[0].Circuit.Location.locality}, ${RaceTable?.Races[0].Circuit.Location.country}`}
+                                        <img className="inline-block mx-2 h-4 border-solid border-[1px] border-gray-900" src={flags.svg} alt={`${RaceTable?.Races[0].Circuit.Location.country}'s flag`} />
+                                    </div>
                                 </div>
                                 <div>
                                     <FontAwesomeIcon className="inline-block mr-2" icon={faCalendarDays} />

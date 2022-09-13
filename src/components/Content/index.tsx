@@ -11,6 +11,11 @@ export const Content = () => {
     const [showSection, setShowSection] = useState(true);
 
     useEffect(() => {
+        if (window.innerWidth <= 1024)
+            setShowFlags(false)
+        else
+            setShowFlags(true)
+
         window.onresize = () => {
             if (window.innerWidth <= 1024)
                 setShowFlags(false)

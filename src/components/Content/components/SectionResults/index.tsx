@@ -42,13 +42,17 @@ export const SectionResults = () => {
         <>
             {
                 isLoad ? (
-                    <Section title="Result of Last Race" content={
-                        <div className="text-lg">
-                            <div>
-                                {`${RaceTable?.Races[0].Circuit.circuitName} - ${RaceTable?.Races[0].Circuit.Location.locality}, ${RaceTable?.Races[0].Circuit.Location.country}`}
-                                <img className="inline-block mx-2 h-4" src={flags.svg} alt={`${RaceTable?.Races[0].Circuit.Location.country}'s flag`} />
+                    <Section title={`${RaceTable?.Races[0].raceName} Result`} content={
+                        <div>
+                            <div className="text-lg">
+                                <div className="sm:inline-block">{`${RaceTable?.Races[0].Circuit.circuitName}`}</div>
+                                <div className="hidden sm:inline-block">&nbsp;|&nbsp;</div>
+                                <div className="sm:inline-block">
+                                    {`${RaceTable?.Races[0].Circuit.Location.locality}, ${RaceTable?.Races[0].Circuit.Location.country}`}
+                                    <img className="inline-block mx-2 h-4 border-solid border-[1px] border-gray-900" src={flags.svg} alt={`${RaceTable?.Races[0].Circuit.Location.country}'s flag`} />
+                                </div>
                             </div>
-                            <div>
+                            <div className="mb-1">
                                 <span className="mr-4">
                                     <FontAwesomeIcon icon={faCircle} className="mr-2 text-green-600" />
                                     Finished

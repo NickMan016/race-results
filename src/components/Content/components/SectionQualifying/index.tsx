@@ -49,11 +49,15 @@ export const SectionQualifying = ({ showSectionQualifying }: PropsSectionQualify
         <>
             {
                 isLoad ? (
-                    <Section title="Result of Current Qualifying" content={
-                        <div className="text-lg">
-                            <div className="mb-1">
-                                {`${RaceTable?.Races[0].Circuit.circuitName} - ${RaceTable?.Races[0].Circuit.Location.locality}, ${RaceTable?.Races[0].Circuit.Location.country}`}
-                                <img className="inline-block mx-2 h-4" src={flags.svg} alt={`${RaceTable?.Races[0].Circuit.Location.country}'s flag`} />
+                    <Section title={`${RaceTable?.Races[0].raceName} Qualifying`} content={
+                        <div>
+                            <div className="mb-1 text-lg">
+                                <div className="sm:inline-block">{`${RaceTable?.Races[0].Circuit.circuitName}`}</div>
+                                <div className="hidden sm:inline-block">&nbsp;|&nbsp;</div>
+                                <div className="sm:inline-block">
+                                    {`${RaceTable?.Races[0].Circuit.Location.locality}, ${RaceTable?.Races[0].Circuit.Location.country}`}
+                                    <img className="inline-block mx-2 h-4 border-solid border-[1px] border-gray-900" src={flags.svg} alt={`${RaceTable?.Races[0].Circuit.Location.country}'s flag`} />
+                                </div>
                             </div>
                             <TableData tHead={[
                                 { text: 'Pos.', center: true },

@@ -58,11 +58,12 @@ export const SectionFlags = () => {
                         Divided Flag
                     </div>
                     <div>
-                        <FontAwesomeIcon icon={faFlag} className="mr-2" />
+                        <FontAwesomeIcon icon={faFlag} className="mr-2 dark:text-black" />
                         Black Flag
                     </div>
                     <div>
-                        <FontAwesomeIcon icon={faFlagRegular} className="mr-2" />
+                        <FontAwesomeIcon icon={faFlagRegular} className="mr-2 dark:hidden" />
+                        <FontAwesomeIcon icon={faFlag} className="mr-2 hidden dark:text-white dark:inline-block" />
                         White Flag
                     </div>
                 </div>
