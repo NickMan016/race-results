@@ -31,12 +31,12 @@ export const SectionFlags = () => {
                     </div>
                     <div>
                         <FontAwesomeIcon icon={faFlag} className="text-yellow-400 mr-2" />
-                        <img src={SC_Icon} className="inline-block mr-2 h-4" />
+                        <img src={SC_Icon} alt="Imagen de Bandera" className="inline-block mr-2 h-4" />
                         Yellow Flag with SC
                     </div>
                     <div>
                         <FontAwesomeIcon icon={faFlag} className="text-yellow-400 mr-2" />
-                        <img src={VSC_Icon} className="inline-block mr-2 h-4" />
+                        <img src={VSC_Icon} alt="Imagen de Bandera" className="inline-block mr-2 h-4" />
                         Yellow Flag with VSC
                     </div>
                 </div>
@@ -50,11 +50,11 @@ export const SectionFlags = () => {
                         Blue Flag
                     </div>
                     <div>
-                        <img src={Stripes_Flag_Icon} className="inline-block mr-2 h-4" />
+                        <img src={Stripes_Flag_Icon} alt="Imagen de Bandera" className="inline-block mr-2 h-4" />
                         Yellow Flag With Red Stripes
                     </div>
                     <div>
-                        <img src={Divided_Flag_Icon} className="inline-block mr-2 h-4" />
+                        <img src={Divided_Flag_Icon} alt="Imagen de Bandera" className="inline-block mr-2 h-4" />
                         Divided Flag
                     </div>
                     <div>
