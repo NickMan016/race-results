@@ -31,7 +31,7 @@ export const Schedule = () => {
 
     useEffect(() => {
         getSchedule(`current`)
-        const response = getRaceWithResults(`current/last`, setStateCountry)
+        const response = getRaceWithResults(`current/next`, setStateCountry)
 
         setTimeout(() => {
             response.then(value => setIsLoad(value))
