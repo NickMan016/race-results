@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { fa1, fa2, fa3, faCalendarDays, faChevronCircleLeft, faChevronCircleRight, faClock } from "@fortawesome/free-solid-svg-icons"
+import { fa1, fa2, fa3, faCalendarDays, faChevronCircleLeft, faChevronCircleRight, faClock, faP, faRankingStar, } from "@fortawesome/free-solid-svg-icons"
 import { Section } from "../Section"
 import { MouseEvent, useContext, useEffect, useState } from "react"
 import { F1Context } from "../../context/F1DB/F1Context"
@@ -31,7 +31,7 @@ export const Schedule = () => {
 
     useEffect(() => {
         getSchedule(`current`)
-        const response = getRaceWithResults(`current/next`, setStateCountry)
+        const response = getRaceWithResults(`current/last`, setStateCountry)
 
         setTimeout(() => {
             response.then(value => setIsLoad(value))
@@ -125,57 +125,79 @@ export const Schedule = () => {
                                             </div>
                                         ) : (
                                             <div className="col-span-2 sm:col-span-1">
-                                                {
-                                                    stateResults.RaceTable?.Races[0].Results?.map((value, index) => {
-                                                        if (index <= 2) {
-                                                            let icon;
-                                                            if (index === 0) {
-                                                                icon = <FontAwesomeIcon className="text-[2.5rem]" icon={fa1} />;
-                                                            } else if (index === 1) {
-                                                                icon = <FontAwesomeIcon className="text-[2.5rem]" icon={fa2} />;
-                                                            } else if (index === 2) {
-                                                                icon = <FontAwesomeIcon className="text-[2.5rem]" icon={fa3} />;
-                                                            }
-                                                            return (
-                                                                <div className="my-4 flex items-center" key={index}>
-                                                                    <div className="mr-4 w-6">{icon}</div>
-                                                                    <div className="mr-4">
-                                                                        <img className="h-10 w-10 rounded-full" src={require(`./../../assets/img/drivers/${value.Driver.driverId}.png`)} alt={`Foto de ${value.Driver.driverId}`} />
-                                                                    </div>
-                                                                    <div className="mr-4 w-20">
-                                                                        <div>{value.Driver.givenName}</div>
-                                                                        <div>{value.Driver.familyName}</div>
-                                                                    </div>
-                                                                </div>
-                                                            )
+                                                <div className="grid grid-cols-2 gap-0">
+                                                    <div className=" col-span-2 sm:col-span-1">
+                                                        {
+                                                            stateResults.RaceTable?.Races[0].Results?.map((value, index) => {
+                                                                if (index <= 2) {
+                                                                    let icon;
+                                                                    if (index === 0) {
+                                                                        icon = <FontAwesomeIcon className="text-[2.5rem]" icon={fa1} />;
+                                                                    } else if (index === 1) {
+                                                                        icon = <FontAwesomeIcon className="text-[2.5rem]" icon={fa2} />;
+                                                                    } else if (index === 2) {
+                                                                        icon = <FontAwesomeIcon className="text-[2.5rem]" icon={fa3} />;
+                                                                    }
+                                                                    return (
+                                                                        <div className="my-2 flex items-center" key={index}>
+                                                                            <div className="mr-4 w-6">{icon}</div>
+                                                                            <div className="mr-4">
+                                                                                <img className="h-10 w-10 rounded-full" src={require(`./../../assets/img/drivers/${value.Driver.driverId}.png`)} alt={`Foto de ${value.Driver.driverId}`} />
+                                                                            </div>
+                                                                            <div className="mr-4 w-20">
+                                                                                <div>{value.Driver.givenName}</div>
+                                                                                <div>{value.Driver.familyName}</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    )
+                                                                }
+                                                            })
                                                         }
-                                                    })
-                                                }
-                                                {
-
-
-                                                    stateResults.RaceTable?.Races[0].Results?.map((value, index) => {
-                                                        if (value.FastestLap?.rank === '1') {
-                                                            return (
-                                                                <div className="my-4 flex items-center" key={index}>
-                                                                    <div className="bg-fuchsia-600 w-6 h-6 mr-4 flex items-center justify-center rounded"><FontAwesomeIcon className="text-white" icon={faClock} /></div>
-                                                                    <div className="mr-4">
-                                                                        <img className="h-10 w-10 rounded-full" src={require(`./../../assets/img/drivers/${value.Driver.driverId}.png`)} alt={`Foto de ${value.Driver.driverId}`} />
-                                                                    </div>
-                                                                    <div className="mr-4 w-20">
-                                                                        <div>{value.Driver.givenName}</div>
-                                                                        <div>{value.Driver.familyName}</div>
-                                                                    </div>
-                                                                </div>
-                                                            )
+                                                    </div>
+                                                    <div className=" col-span-2 sm:col-span-1">
+                                                        {
+                                                            stateResults.RaceTable?.Races[0].Results?.map((value, index) => {
+                                                                if (value.grid === '1') {
+                                                                    return (
+                                                                        <div className="my-2 flex items-center" key={index}>
+                                                                            <div className="bg-[#EE0000] w-6 h-6 mr-4 flex items-center justify-center rounded"><FontAwesomeIcon className="" icon={faP} /></div>
+                                                                            <div className="mr-4">
+                                                                                <img className="h-10 w-10 rounded-full" src={require(`./../../assets/img/drivers/${value.Driver.driverId}.png`)} alt={`Foto de ${value.Driver.driverId}`} />
+                                                                            </div>
+                                                                            <div className="mr-4 w-20">
+                                                                                <div>{value.Driver.givenName}</div>
+                                                                                <div>{value.Driver.familyName}</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    )
+                                                                }
+                                                            })
                                                         }
-                                                    })
-                                                }
+                                                        {
+                                                            stateResults.RaceTable?.Races[0].Results?.map((value, index) => {
+                                                                if (value.FastestLap?.rank === '1') {
+                                                                    return (
+                                                                        <div className="my-2 flex items-center" key={index}>
+                                                                            <div className="bg-fuchsia-600 w-6 h-6 mr-4 flex items-center justify-center rounded"><FontAwesomeIcon className="text-white" icon={faClock} /></div>
+                                                                            <div className="mr-4">
+                                                                                <img className="h-10 w-10 rounded-full" src={require(`./../../assets/img/drivers/${value.Driver.driverId}.png`)} alt={`Foto de ${value.Driver.driverId}`} />
+                                                                            </div>
+                                                                            <div className="mr-4 w-20">
+                                                                                <div>{value.Driver.givenName}</div>
+                                                                                <div>{value.Driver.familyName}</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    )
+                                                                }
+                                                            })
+                                                        }
+                                                    </div>
+                                                </div>
                                             </div>
                                         )
                                     }
                                     <div className="col-span-2 sm:col-span-1">
-                                        <img className="block mt-2 mx-auto h-[140px] sm:mt-0" src={require(`./../../assets/img/circuits/${RaceTable?.Races[0].Circuit.circuitId}.png`)} alt="" />
+                                        <img className="block mt-4 mx-auto h-[140px] sm:mt-0" src={require(`./../../assets/img/circuits/${RaceTable?.Races[0].Circuit.circuitId}.png`)} alt="" />
                                     </div>
                                 </div>
                             </>
