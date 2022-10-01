@@ -1,5 +1,3 @@
-import { faCircle } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
 import { F1Context } from "../../../../context/F1DB/F1Context";
 import { Country } from "../../../../interfaces/CountriesInterfaces";
