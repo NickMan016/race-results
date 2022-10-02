@@ -78,7 +78,13 @@ export const SectionResults = () => {
                                     {RaceTable?.Races[0].Results?.map((value: Result, index) => {
                                         let status, time;
 
-                                        if (value.FastestLap?.rank === '1') {
+                                        if (value.FastestLap?.rank === '1' && (value.status === '+1 Lap' || value.status === '+2 Laps' || value.status === '+3 Laps' || value.status === '+4 Laps' || value.status === '+5 Laps' || value.status === '+6 Laps' || value.status === '+7 Laps' || value.status === '+8 Laps' || value.status === '+9 Laps')) {
+                                            status = <>
+                                                <FontAwesomeIcon icon={faCircle} className="text-green-600 mr-2" />
+                                                <FontAwesomeIcon icon={faCircle} className="text-fuchsia-600" />
+                                            </>;
+                                            time = value.Time?.time || value.status;
+                                        } else if (value.FastestLap?.rank === '1') {
                                             status = <>
                                                 <FontAwesomeIcon icon={faCircle} className="text-green-600 mr-2" />
                                                 <FontAwesomeIcon icon={faCircle} className="text-fuchsia-600" />
