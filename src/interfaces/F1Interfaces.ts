@@ -54,6 +54,7 @@ export interface Race {
     time: string
     Results?: Result[]
     QualifyingResults?: QualifyingResult[]
+    SprintResults?: Result[]
     FirstPractice: Schedule
     SecondPractice: Schedule
     ThirdPractice?: Schedule

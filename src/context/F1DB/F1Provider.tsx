@@ -28,6 +28,7 @@ export const F1Provider = ({ children }: ProviderProps) => {
     // const [stateRaces, dispatch] = useReducer(F1Reducer, INITIAL_STATE);
     const [stateResults, setStateResults] = useState(INITIAL_STATE);
     const [stateQualifying, setStateQualifying] = useState(INITIAL_STATE);
+    const [stateSprint, setStateSprint] = useState(INITIAL_STATE);
     const [stateRace, setStateRace] = useState(INITIAL_STATE);
     const [stateDriverStanding, setStateDriverStanding] = useState(INITIAL_STATE);
     const [stateConstructorStanding, setStateConstructorStanding] = useState(INITIAL_STATE);
@@ -56,6 +57,22 @@ export const F1Provider = ({ children }: ProviderProps) => {
                 return false
             else {
                 setStateQualifying(data)
+                getCountry(data.RaceTable?.Races[0].Circuit.Location.country || '', setCountry)
+                return true;
+            }
+        } catch (error) {
+            return false;
+        }
+    }
+
+    const getSprint = async ( query: string, setCountry: Dispatch<SetStateAction<Country>> ) => {
+        try {
+            const response: any = await apiF1DB(query)
+            const data: MRData = await response.data.MRData;
+            if (data.RaceTable?.Races.length === 0)
+                return false
+            else {
+                setStateSprint(data)
                 getCountry(data.RaceTable?.Races[0].Circuit.Location.country || '', setCountry)
                 return true;
             }
@@ -152,6 +169,7 @@ export const F1Provider = ({ children }: ProviderProps) => {
         <F1Context.Provider value={{
             stateResults,
             stateQualifying,
+            stateSprint,
             stateRace,
             stateDriverStanding,
             stateConstructorStanding,
@@ -161,6 +179,7 @@ export const F1Provider = ({ children }: ProviderProps) => {
             getRaceWithResults,
             getResults,
             getQualifying,
+            getSprint,
             getRace,
             getDriverStanding,
             getConstructorStanding,

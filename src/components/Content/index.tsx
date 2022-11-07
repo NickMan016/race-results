@@ -5,10 +5,12 @@ import { SectionDriverStanding } from './components/SectionDriverStanding';
 import { SectionConstructorStanding } from './components/SectionConstructorStanding';
 import { SectionFlags } from './components/SectionFlags';
 import { SectionQualifying } from './components/SectionQualifying';
+import { SectionSprint } from './components/SectionSprint';
 
 export const Content = () => {
     const [showFlags, setShowFlags] = useState(true);
     const [showSection, setShowSection] = useState(true);
+    const [showSectionSprint, setShowSectionSprint] = useState(true);
 
     useEffect(() => {
         if (window.innerWidth <= 1024)
@@ -31,10 +33,18 @@ export const Content = () => {
                 <div className="col-span-3 lg:col-span-2">
                     <SectionRace />
                     {
-                        showSection ? (
-                            <SectionQualifying showSectionQualifying={setShowSection} />
+                        showSectionSprint ? (
+                            <SectionSprint showSectionSprint={setShowSectionSprint} />
                         ) : (
-                            <SectionResults />
+                            <>
+                                {
+                                    showSection ? (
+                                        <SectionQualifying showSectionQualifying={setShowSection} />
+                                    ) : (
+                                        <SectionResults />
+                                    )
+                                }
+                            </>
                         )
                     }
                     {
