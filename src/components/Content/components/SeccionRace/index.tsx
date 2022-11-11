@@ -1,8 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { F1Context } from "../../../../context/F1DB/F1Context"
 import { Country } from "../../../../interfaces/CountriesInterfaces"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCalendarDays } from "@fortawesome/free-solid-svg-icons"
 import { FormatDate } from "../../../../hooks/FormatDate"
 import { SectionLoading } from "../../../Section/components/SectionLoading"
 import { Section } from "../../../Section"
@@ -27,7 +25,7 @@ export const SectionRace = () => {
     const { stateRace, getRace } = useContext(F1Context);
     const [stateCountry, setStateCountry] = useState(INITIAL_STATE);
     const { RaceTable } = stateRace;
-    const { flags, region, capital } = stateCountry;
+    const { flags } = stateCountry;
 
     useEffect(() => {
         const response = getRace(`current/next`, setStateCountry)

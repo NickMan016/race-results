@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { fa1, fa2, fa3, faCalendarDays, faChevronCircleLeft, faChevronCircleRight, faClock, faP } from "@fortawesome/free-solid-svg-icons"
+import { fa1, fa2, fa3, faChevronCircleLeft, faChevronCircleRight, faClock, faP } from "@fortawesome/free-solid-svg-icons"
 import { Section } from "../Section"
 import { MouseEvent, useContext, useEffect, useState } from "react"
 import { F1Context } from "../../context/F1DB/F1Context"
@@ -27,7 +27,7 @@ export const Schedule = () => {
     const { stateSchedule, stateRace, stateResults, getSchedule, getRaceWithResults } = useContext(F1Context);
     const [stateCountry, setStateCountry] = useState(INITIAL_STATE);
     const { RaceTable } = stateRace;
-    const { flags, region, capital } = stateCountry
+    const { flags } = stateCountry
 
     useEffect(() => {
         getSchedule(`current`)
