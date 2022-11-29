@@ -10,6 +10,7 @@ import { SectionSprint } from './components/SectionSprint';
 export const Content = () => {
     const [showFlags, setShowFlags] = useState(true);
     const [showSection, setShowSection] = useState(true);
+    const [showSectionRace, setShowSectionRace] = useState(true);
     const [showSectionSprint, setShowSectionSprint] = useState(true);
 
     useEffect(() => {
@@ -31,7 +32,11 @@ export const Content = () => {
         <>
             <div className="grid grid-cols-3 gap-0 lg:gap-5">
                 <div className="col-span-3 lg:col-span-2">
-                    <SectionRace />
+                    {
+                        showSectionRace ? (
+                            <SectionRace showSectionRace={setShowSectionRace} />
+                        ) : undefined
+                    }
                     {
                         showSectionSprint ? (
                             <SectionSprint showSectionSprint={setShowSectionSprint} />

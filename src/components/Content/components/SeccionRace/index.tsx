@@ -1,11 +1,15 @@
-import { useContext, useEffect, useState } from "react"
+import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react"
 import { F1Context } from "../../../../context/F1DB/F1Context"
 import { Country } from "../../../../interfaces/CountriesInterfaces"
 import { FormatDate } from "../../../../hooks/FormatDate"
 import { SectionLoading } from "../../../Section/components/SectionLoading"
 import { Section } from "../../../Section"
 
-export const SectionRace = () => {
+interface PropsSectionRace {
+    showSectionRace: Dispatch<SetStateAction<boolean>>
+}
+
+export const SectionRace = ({ showSectionRace }: PropsSectionRace) => {
 
     const INITIAL_STATE: Country = {
         name: "",
@@ -31,7 +35,10 @@ export const SectionRace = () => {
         const response = getRace(`current/next`, setStateCountry)
 
         setTimeout(() => {
-            response.then(value => setIsLoad(value))
+            response.then(value => {
+                showSectionRace(value)
+                setIsLoad(value)
+            })
 
         }, 2000);
     }, []);

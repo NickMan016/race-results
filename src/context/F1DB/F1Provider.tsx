@@ -83,11 +83,16 @@ export const F1Provider = ({ children }: ProviderProps) => {
 
     const getRace = async ( query: string, setCountry: Dispatch<SetStateAction<Country>> ) => {
         try {
+            const date = new Date();
             const response: any = await apiF1DB(query);
             const data: MRData = await response.data.MRData;
-            setStateRace(data);
-            getCountry(data.RaceTable?.Races[0].Circuit.Location.country || '', setCountry);
-            return true;
+            if (data.RaceTable?.season !== date.getFullYear().toString()) {
+                return false;
+            } else {
+                setStateRace(data);
+                getCountry(data.RaceTable?.Races[0].Circuit.Location.country || '', setCountry);
+                return true;
+            }
         } catch (error) {
             return false;
         }
@@ -95,16 +100,32 @@ export const F1Provider = ({ children }: ProviderProps) => {
 
     const getRaceWithResults = async ( query: string, setCountry: Dispatch<SetStateAction<Country>> ) => {
         try {
+            const date = new Date();
             const responseRace: any = await apiF1DB(query)
             const dataRace: MRData = await responseRace.data.MRData;
+
+            if (dataRace.RaceTable?.season !== date.getFullYear().toString()) {
+                const responseRace: any = await apiF1DB('current/last')
+                const dataRace: MRData = await responseRace.data.MRData;
+                
+                const responseResults: any = await apiF1DB(`current/last/results`)
+                const dataResults: MRData = await responseResults.data.MRData;
+                            
+                setStateRace(dataRace);
+                setStateResults(dataResults);
+                getCountry(dataRace.RaceTable?.Races[0].Circuit.Location.country || '', setCountry);
             
-            const responseResults: any = await apiF1DB(`${query}/results`)
-            const dataResults: MRData = await responseResults.data.MRData;
-                        
-            setStateRace(dataRace);
-            setStateResults(dataResults);
-            getCountry(dataRace.RaceTable?.Races[0].Circuit.Location.country || '', setCountry);
-            return true;
+                return true;
+            } else {
+                const responseResults: any = await apiF1DB(`${query}/results`)
+                const dataResults: MRData = await responseResults.data.MRData;
+                            
+                setStateRace(dataRace);
+                setStateResults(dataResults);
+                getCountry(dataRace.RaceTable?.Races[0].Circuit.Location.country || '', setCountry);
+            
+                return true;
+            }
         } catch (error) {
             return false;
         }
