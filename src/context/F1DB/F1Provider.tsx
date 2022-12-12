@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useContext, useState } from "react"
 import { Country } from "../../interfaces/CountriesInterfaces"
-import { MRData } from "../../interfaces/F1Interfaces"
+import { MRData, DriverStanding } from "../../interfaces/F1Interfaces"
 import { F1Context } from "./F1Context"
 import { CountriesContext } from "../CountriesDB/CountriesContext"
 import apiF1DB from "../../api/F1DB"
@@ -20,6 +20,22 @@ const INITIAL_STATE: MRData = {
         season: "",
         round: "",
         Races: []
+    },
+    StandingsTable: {
+        season: '',
+        StandingsLists: []
+    },
+    ConstructorTable: {
+        Constructors: []
+    },
+    DriverTable: {
+        season: '',
+        constructorId: '',
+        Drivers: []
+    },
+    CircuitTable: {
+        season: '',
+        Circuits: []
     }
 }
 
@@ -186,6 +202,28 @@ export const F1Provider = ({ children }: ProviderProps) => {
         }
     }
 
+    const getInfoDriverChampion = async () => {
+        try {
+            const response: any = await apiF1DB('current/driverStandings');
+            const data: MRData = await response.data.MRData;
+
+            const dataDriver: DriverStanding = data.StandingsTable.StandingsLists[0].DriverStandings[0];
+            
+            const responseQualifying: any = await apiF1DB(`current/drivers/${dataDriver.Driver.driverId}/qualifying`)
+            const dataQualifying: MRData = await responseQualifying.data.MRData;
+            let podiums = 0;
+            for (let index = 0; index < dataQualifying.RaceTable.Races.length; index++) {
+                if (dataQualifying.RaceTable.Races[index].QualifyingResults[0].position === "1")
+                    podiums++;
+            }
+            console.log(podiums);
+            
+            return true;
+        } catch (error) {
+            return false;
+        }
+    }
+
     return (
         <F1Context.Provider value={{
             stateResults,
@@ -206,7 +244,8 @@ export const F1Provider = ({ children }: ProviderProps) => {
             getConstructorStanding,
             getConstructors,
             getDrivers,
-            getSchedule
+            getSchedule,
+            getInfoDriverChampion
         }}>
             {children}
         </F1Context.Provider>

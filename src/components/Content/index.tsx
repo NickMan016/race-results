@@ -6,6 +6,7 @@ import { SectionConstructorStanding } from './components/SectionConstructorStand
 import { SectionFlags } from './components/SectionFlags';
 import { SectionQualifying } from './components/SectionQualifying';
 import { SectionSprint } from './components/SectionSprint';
+import { SectionFinishSeason } from './components/SectionFinishSeason';
 
 export const Content = () => {
     const [showFlags, setShowFlags] = useState(true);
@@ -30,8 +31,11 @@ export const Content = () => {
 
     return (
         <>
-            <div className="grid grid-cols-3 gap-0 lg:gap-5">
-                <div className="col-span-3 lg:col-span-2">
+            <div className="grid grid-cols-6 gap-0 lg:gap-5">
+                {/* <div className="col-span-3">
+                    <SectionFinishSeason />
+                </div> */}
+                <div className="col-span-6 xl:col-span-4">
                     {
                         showSectionRace ? (
                             <SectionRace showSectionRace={setShowSectionRace} />
@@ -58,7 +62,7 @@ export const Content = () => {
                         ) : undefined
                     }
                 </div>
-                <div className="col-span-3 lg:col-span-1">
+                <div className="col-span-6 xl:col-span-2">
                     <SectionDriverStanding />
                     <SectionConstructorStanding />
                 </div>
