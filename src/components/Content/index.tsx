@@ -6,7 +6,7 @@ import { SectionConstructorStanding } from './components/SectionConstructorStand
 import { SectionFlags } from './components/SectionFlags';
 import { SectionQualifying } from './components/SectionQualifying';
 import { SectionSprint } from './components/SectionSprint';
-import { SectionFinishSeason } from './components/SectionFinishSeason';
+// import { SectionFinishSeason } from './components/SectionFinishSeason';
 
 export const Content = () => {
     const [showFlags, setShowFlags] = useState(true);
