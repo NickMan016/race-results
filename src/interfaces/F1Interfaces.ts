@@ -7,17 +7,17 @@ export interface MRData {
     limit: string
     offset: string
     total: string
-    RaceTable?: RaceTable
-    StandingsTable?: StandingsTable
-    ConstructorTable?: ConstructorTable,
-    DriverTable?: DriverTable,
-    CircuitTable?: CircuitTable,
+    RaceTable: RaceTable
+    StandingsTable: StandingsTable
+    ConstructorTable: ConstructorTable,
+    DriverTable: DriverTable,
+    CircuitTable: CircuitTable,
 }
 
 export interface Driver {
     driverId: string
-    permanentNumber?: string
-    code?: string
+    permanentNumber: string
+    code: string
     url: string
     givenName: string
     familyName: string
@@ -52,14 +52,14 @@ export interface Race {
     Circuit: Circuit
     date: string
     time: string
-    Results?: Result[]
-    QualifyingResults?: QualifyingResult[]
-    SprintResults?: Result[]
+    Results: Result[]
+    QualifyingResults: QualifyingResult[]
+    SprintResults: Result[]
     FirstPractice: Schedule
     SecondPractice: Schedule
-    ThirdPractice?: Schedule
+    ThirdPractice: Schedule
     Qualifying: Schedule
-    Sprint?: Schedule
+    Sprint: Schedule
 }
 
 export interface Location {
@@ -86,8 +86,8 @@ export interface QualifyingResult {
     Driver: Driver
     Constructor: Constructor
     Q1: string
-    Q2?: string
-    Q3?: string
+    Q2: string
+    Q3: string
 }
 
 export interface ConstructorTable {
@@ -95,13 +95,13 @@ export interface ConstructorTable {
 }
 
 export interface DriverTable {
-    season?: string,
-    constructorId?: string,
+    season: string,
+    constructorId: string,
     Drivers: Driver[]
 }
 
 export interface CircuitTable {
-    season?: string,
+    season: string,
     Circuits: Circuit[]
 }
 
@@ -116,14 +116,14 @@ export interface Result {
     laps: string
     status: string
     Time: Time
-    FastestLap?: FastestLap
+    FastestLap: FastestLap
 }
 
 export interface StandingsList {
     season: string
     round: string
-    DriverStandings?: DriverStanding[]
-    ConstructorStandings?: ConstructorStanding[]
+    DriverStandings: DriverStanding[]
+    ConstructorStandings: ConstructorStanding[]
 }
 
 export interface DriverStanding {
@@ -144,7 +144,7 @@ export interface ConstructorStanding {
 }
 
 export interface Time {
-    millis?: string
+    millis: string
     time: string
 }
 
