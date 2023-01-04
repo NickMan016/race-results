@@ -30,7 +30,8 @@ export const Schedule = () => {
     const { flags } = stateCountry
 
     useEffect(() => {
-        getSchedule(`current`)
+        const date = new Date();
+        getSchedule(date.getFullYear().toString())
         const response = getRaceWithResults(`current/next`, setStateCountry)
 
         setTimeout(() => {
@@ -45,9 +46,9 @@ export const Schedule = () => {
         setIsLoad(false)
         let responseRace: Promise<boolean>;
         if (name === '+') {
-            responseRace = getRaceWithResults(`current/${parseInt(RaceTable?.round || '1') + 1}`, setStateCountry)
+            responseRace = getRaceWithResults(`${RaceTable?.season}/${parseInt(RaceTable?.round || '1') + 1}`, setStateCountry)
         } else {
-            responseRace = getRaceWithResults(`current/${parseInt(RaceTable?.round || '1') - 1}`, setStateCountry)
+            responseRace = getRaceWithResults(`${RaceTable?.season}/${parseInt(RaceTable?.round || '1') - 1}`, setStateCountry)
         }
 
         setTimeout(() => {

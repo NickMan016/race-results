@@ -6,13 +6,14 @@ import { SectionConstructorStanding } from './components/SectionConstructorStand
 import { SectionFlags } from './components/SectionFlags';
 import { SectionQualifying } from './components/SectionQualifying';
 import { SectionSprint } from './components/SectionSprint';
-// import { SectionFinishSeason } from './components/SectionFinishSeason';
+import { SectionFinishSeason } from './components/SectionFinishSeason';
 
 export const Content = () => {
     const [showFlags, setShowFlags] = useState(true);
     const [showSection, setShowSection] = useState(true);
     const [showSectionRace, setShowSectionRace] = useState(true);
     const [showSectionSprint, setShowSectionSprint] = useState(true);
+    const [showSectionFinishSeason, setShowSectionFinishSeason] = useState(true);
 
     useEffect(() => {
         if (window.innerWidth <= 1024)
@@ -32,40 +33,45 @@ export const Content = () => {
     return (
         <>
             <div className="grid grid-cols-6 gap-0 lg:gap-5">
-                {/* <div className="col-span-3">
-                    <SectionFinishSeason />
-                </div> */}
-                <div className="col-span-6 xl:col-span-4">
-                    {
-                        showSectionRace ? (
-                            <SectionRace showSectionRace={setShowSectionRace} />
-                        ) : undefined
-                    }
-                    {
-                        showSectionSprint ? (
-                            <SectionSprint showSectionSprint={setShowSectionSprint} />
-                        ) : (
-                            <>
+                {
+                    showSectionFinishSeason ? (
+                        <SectionFinishSeason showSectionFinishSeason={setShowSectionFinishSeason} />
+                    ) : (
+                        <>
+                            <div className="col-span-6 xl:col-span-4">
                                 {
-                                    showSection ? (
-                                        <SectionQualifying showSectionQualifying={setShowSection} />
+                                    showSectionRace ? (
+                                        <SectionRace showSectionRace={setShowSectionRace} />
+                                    ) : undefined
+                                }
+                                {
+                                    showSectionSprint ? (
+                                        <SectionSprint showSectionSprint={setShowSectionSprint} />
                                     ) : (
-                                        <SectionResults />
+                                        <>
+                                            {
+                                                showSection ? (
+                                                    <SectionQualifying showSectionQualifying={setShowSection} />
+                                                ) : (
+                                                    <SectionResults />
+                                                )
+                                            }
+                                        </>
                                     )
                                 }
-                            </>
-                        )
-                    }
-                    {
-                        showFlags ? (
-                            <SectionFlags />
-                        ) : undefined
-                    }
-                </div>
-                <div className="col-span-6 xl:col-span-2">
-                    <SectionDriverStanding />
-                    <SectionConstructorStanding />
-                </div>
+                                {
+                                    showFlags ? (
+                                        <SectionFlags />
+                                    ) : undefined
+                                }
+                            </div>
+                            <div className="col-span-6 xl:col-span-2">
+                                <SectionDriverStanding />
+                                <SectionConstructorStanding />
+                            </div>
+                        </>
+                    )
+                }
             </div>
         </>
     )

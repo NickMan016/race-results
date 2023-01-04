@@ -131,6 +131,8 @@ export interface DriverStanding {
     positionText: string
     points: string
     wins: string
+    poles: string
+    fastestlaps: string
     Driver: Driver
     Constructors: Constructor[]
 }
