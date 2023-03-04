@@ -72,7 +72,7 @@ export const F1Provider = ({ children }: ProviderProps) => {
     const [stateDrivers, setStateDrivers] = useState(INITIAL_STATE);
     const [stateSchedule, setStateSchedule] = useState(INITIAL_STATE);
     const [stateInfoDriverChampion, setStateInfoDriverChampion] = useState(INITIAL_STATE_DRIVER_CHAMPION);
-    const { getCountry } = useContext(CountriesContext);//InfoDriverChampion
+    const { getCountry } = useContext(CountriesContext);
 
     const getResults = async (query: string, setCountry: Dispatch<SetStateAction<Country>>) => {
         try {
