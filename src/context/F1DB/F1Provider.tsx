@@ -139,8 +139,8 @@ export const F1Provider = ({ children }: ProviderProps) => {
         try {
             const date = new Date();
             const responseRace: any = await apiF1DB(query)
-            const dataRace: MRData = await responseRace.data.MRData;            
-
+            const dataRace: MRData = await responseRace.data.MRData;
+            
             if (dataRace.RaceTable?.season !== date.getFullYear().toString()) {
                 const responseRace: any = await apiF1DB('current/last')
                 const dataRace: MRData = await responseRace.data.MRData;
@@ -233,42 +233,47 @@ export const F1Provider = ({ children }: ProviderProps) => {
         responseSchedule = await apiF1DB(`${parseInt(dataSchedule.RaceTable.season) + 1}`);
         dataSchedule = await responseSchedule.data.MRData;
 
-        const dateNextRace = new Date(dataSchedule.RaceTable.Races[0].date);
-        dateLastRace.setDate(dateNextRace.getDate() - 7);
+        if (dataSchedule.RaceTable.Races.length !== 0) {
+            const dateNextRace = new Date(dataSchedule.RaceTable.Races[0].date);
+            dateLastRace.setDate(dateNextRace.getDate() - 7);
+            
+            const date = new Date();
+    
+            if (date > dateLastRace && date < dateNextRace && (date.getFullYear().toString() === dataSchedule.RaceTable.season && dataSchedule.RaceTable.Races.length === 0)) {
+                try {
+                    const response: any = await apiF1DB('current/driverStandings');
+                    const data: MRData = await response.data.MRData;
         
-        const date = new Date();
-
-        if (date > dateLastRace && (dataSchedule.RaceTable.Races.length === 0 || date < dateNextRace)) {
-            try {
-                const response: any = await apiF1DB('current/driverStandings');
-                const data: MRData = await response.data.MRData;
-    
-                const dataDriver: DriverStanding = data.StandingsTable.StandingsLists[0].DriverStandings[0];
-    
-                const responseQualifying: any = await apiF1DB(`current/drivers/${dataDriver.Driver.driverId}/qualifying`);
-                const dataQualifying: MRData = await responseQualifying.data.MRData;
-                const responseResults: any = await apiF1DB(`current/drivers/${dataDriver.Driver.driverId}/results`);
-                const dataResults: MRData = await responseResults.data.MRData;
-                let podiums = 0, fastestlaps = 0;
-                for (let index = 0; index < dataQualifying.RaceTable.Races.length; index++) {
-                    if (dataQualifying.RaceTable.Races[index].QualifyingResults[0].position === "1")
-                        podiums++;
+                    const dataDriver: DriverStanding = data.StandingsTable.StandingsLists[0].DriverStandings[0];
+        
+                    const responseQualifying: any = await apiF1DB(`current/drivers/${dataDriver.Driver.driverId}/qualifying`);
+                    const dataQualifying: MRData = await responseQualifying.data.MRData;
+                    const responseResults: any = await apiF1DB(`current/drivers/${dataDriver.Driver.driverId}/results`);
+                    const dataResults: MRData = await responseResults.data.MRData;
+                    let podiums = 0, fastestlaps = 0;
+                    for (let index = 0; index < dataQualifying.RaceTable.Races.length; index++) {
+                        if (dataQualifying.RaceTable.Races[index].QualifyingResults[0].position === "1")
+                            podiums++;
+                    }
+                    for (let index = 0; index < dataResults.RaceTable.Races.length; index++) {
+                        if (dataResults.RaceTable.Races[index].Results[0].FastestLap.rank === "1")
+                            fastestlaps++;
+                    }
+                    dataDriver.poles = podiums.toString();
+                    dataDriver.fastestlaps = fastestlaps.toString();
+                    setStateInfoDriverChampion(dataDriver);
+        
+                    return true;
+                } catch (error) {
+                    return false;
                 }
-                for (let index = 0; index < dataResults.RaceTable.Races.length; index++) {
-                    if (dataResults.RaceTable.Races[index].Results[0].FastestLap.rank === "1")
-                        fastestlaps++;
-                }
-                dataDriver.poles = podiums.toString();
-                dataDriver.fastestlaps = fastestlaps.toString();
-                setStateInfoDriverChampion(dataDriver);
-    
-                return true;
-            } catch (error) {
+            } else {
                 return false;
             }
         } else {
             return false;
         }
+
     }
 
     return (

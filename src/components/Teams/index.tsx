@@ -34,7 +34,6 @@ export const Teams = () => {
             responseConstructors.then(value => {
                 setIsLoad(value)
                 setIsLoadTable(value)
-                console.log(ConstructorTable);
             })
         }, 2000);
         
