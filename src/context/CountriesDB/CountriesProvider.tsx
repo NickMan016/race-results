@@ -23,6 +23,8 @@ export const CountriesProvider = ({ children }: ProviderProps) => {
                         const element = value.altSpellings[index];
                         if (element === "UK") {
                             setCountry(value);
+                        } else if (element === "USA") {
+                            setCountry(value);
                         }
                     }
                     return;
