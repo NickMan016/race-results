@@ -127,7 +127,7 @@ export const Drivers = () => {
                                                                 DriverTable?.Drivers.map((value, index) => (
                                                                     <tr className="border-gray-700 border-b-[1px] hover:bg-gray-300 dark:border-gray-500 dark:hover:bg-gray-700" key={index}>
                                                                         <td className="col__img">
-                                                                            {/* <img className="h-8 w-8 m-auto rounded-full" src={require(`./../../assets/img/drivers/${value.driverId}.png`)} alt={`Foto de ${value.driverId}`} /> */}
+                                                                            <img className="h-8 w-8 m-auto rounded-full" src={`https://race-results-images.up.railway.app/api/drivers/${value.driverId}/image`} alt={`Foto de ${value.driverId}`} />
                                                                         </td>
                                                                         <td className="p-3">{`${value.givenName} ${value.familyName}`}</td>
                                                                         <td className="p-3">{value.permanentNumber || 'Not Number'}</td>

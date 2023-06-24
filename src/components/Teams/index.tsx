@@ -36,7 +36,7 @@ export const Teams = () => {
                 setIsLoadTable(value)
             })
         }, 2000);
-        
+
     }, [])
 
     useEffect(() => {
@@ -84,15 +84,26 @@ export const Teams = () => {
                                                 {
                                                     ConstructorTable?.Constructors.length === 0 ? (
                                                         <tr className="text-center">
-                                                            <td colSpan={2}>No teams found with your search</td>
+                                                            <td colSpan={3}>No teams found with your search</td>
                                                         </tr>
                                                     ) : (
                                                         <>
                                                             {
                                                                 ConstructorTable?.Constructors.map((value, index) => (
                                                                     <tr className="border-gray-700 border-b-[1px] hover:bg-gray-300 dark:border-gray-500 dark:hover:bg-gray-700" key={index}>
-                                                                        <td className="p-3">{value.name || 'Not Number'}</td>
+                                                                        <td className="p-3">
+                                                                            <div className="inline-block">
+                                                                            {value.name || 'Not Name'}
+                                                                            </div>
+                                                                            <div className="inline-block">
+                                                                            <img className="block ml-4 mx-auto h-4" src={`https://race-results-images.up.railway.app/api/teams/${value.constructorId}/image`} alt="" />
+                                                                            </div>
+                                                                        </td>
+                                                                        {/* <td className="">
+                                                                            <img className="block mx-auto h-6" src={`https://race-results-images.up.railway.app/api/teams/${value.constructorId}/image`} alt="" />
+                                                                        </td> */}
                                                                         <td className="p-3">{value.nationality}</td>
+                                                                        <td></td>
                                                                     </tr>
                                                                 ))
                                                             }

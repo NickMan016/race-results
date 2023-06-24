@@ -99,7 +99,7 @@ export const SectionRace = ({ showSectionRace }: PropsSectionRace) => {
                                     <FormatDate date={`${RaceTable?.Races[0].date}`} time={`${RaceTable?.Races[0].time}`} />
                                 </div>
                             </div>
-                            <img className="block my-4 mx-auto h-[150px] col-span-2 sm:my-0 sm:col-span-1" src={require(`./../../../../assets/img/circuits/${RaceTable?.Races[0].Circuit.circuitId}.png`)} alt="" />
+                            <img className="block my-4 mx-auto h-[150px] col-span-2 sm:my-0 sm:col-span-1" src={`https://race-results-images.up.railway.app/api/circuits/${RaceTable?.Races[0].Circuit.circuitId}/image`} alt="" />
                         </div>
                     } />
                 ) : (
