@@ -93,15 +93,13 @@ export const Teams = () => {
                                                                     <tr className="border-gray-700 border-b-[1px] hover:bg-gray-300 dark:border-gray-500 dark:hover:bg-gray-700" key={index}>
                                                                         <td className="p-3">
                                                                             <div className="inline-block">
-                                                                            {value.name || 'Not Name'}
+                                                                                {value.name || 'Not Name'}
                                                                             </div>
-                                                                            <div className="inline-block">
-                                                                            <img className="block ml-4 mx-auto h-4" src={`https://race-results-images.up.railway.app/api/teams/${value.constructorId}/image`} alt="" />
-                                                                            </div>
+                                                                                <img className="ml-4 mx-auto h-5 hidden dark:inline-block" src={`http://localhost:5000/api/teams/${value.constructorId}/image/miniImage/dark`} alt="" />
+                                                                                <img className="ml-4 mx-auto h-5 inline-block dark:hidden" src={`http://localhost:5000/api/teams/${value.constructorId}/image/miniImage/light`} alt="" />
+                                                                            {/* <div className="inline-block">
+                                                                            </div> */}
                                                                         </td>
-                                                                        {/* <td className="">
-                                                                            <img className="block mx-auto h-6" src={`https://race-results-images.up.railway.app/api/teams/${value.constructorId}/image`} alt="" />
-                                                                        </td> */}
                                                                         <td className="p-3">{value.nationality}</td>
                                                                         <td></td>
                                                                     </tr>
