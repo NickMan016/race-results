@@ -151,7 +151,7 @@ export const Schedule = () => {
                                                                         <div className="my-2 flex items-center" key={index}>
                                                                             <div className="mr-4 w-6">{icon}</div>
                                                                             <div className="mr-4">
-                                                                                <img className="h-10 w-10 rounded-full" src={`https://race-results-images.up.railway.app/api/drivers/${value.Driver.driverId}/image`} alt={`Foto de ${value.Driver.driverId}`} />
+                                                                                <img className="h-10 w-10 rounded-full" src={`https://race-results-api.onrender.com/api/drivers/${value.Driver.driverId}/image`} alt={`Foto de ${value.Driver.driverId}`} />
                                                                             </div>
                                                                             <div className="mr-4 w-20">
                                                                                 <div>{value.Driver.givenName}</div>
@@ -171,7 +171,7 @@ export const Schedule = () => {
                                                                         <div className="my-2 flex items-center" key={index}>
                                                                             <div className="bg-[#EE0000] w-6 h-6 mr-4 flex items-center justify-center rounded"><FontAwesomeIcon className="" icon={faP} /></div>
                                                                             <div className="mr-4">
-                                                                                <img className="h-10 w-10 rounded-full" src={`https://race-results-images.up.railway.app/api/drivers/${value.Driver.driverId}/image`} alt={`Foto de ${value.Driver.driverId}`} />
+                                                                                <img className="h-10 w-10 rounded-full" src={`https://race-results-api.onrender.com/api/drivers/${value.Driver.driverId}/image`} alt={`Foto de ${value.Driver.driverId}`} />
                                                                             </div>
                                                                             <div className="mr-4 w-20">
                                                                                 <div>{value.Driver.givenName}</div>
@@ -189,7 +189,7 @@ export const Schedule = () => {
                                                                         <div className="my-2 flex items-center" key={index}>
                                                                             <div className="bg-fuchsia-600 w-6 h-6 mr-4 flex items-center justify-center rounded"><FontAwesomeIcon className="text-white" icon={faClock} /></div>
                                                                             <div className="mr-4">
-                                                                                <img className="h-10 w-10 rounded-full" src={`https://race-results-images.up.railway.app/api/drivers/${value.Driver.driverId}/image`} alt={`Foto de ${value.Driver.driverId}`} />
+                                                                                <img className="h-10 w-10 rounded-full" src={`https://race-results-api.onrender.com/api/drivers/${value.Driver.driverId}/image`} alt={`Foto de ${value.Driver.driverId}`} />
                                                                             </div>
                                                                             <div className="mr-4 w-20">
                                                                                 <div>{value.Driver.givenName}</div>
@@ -206,7 +206,7 @@ export const Schedule = () => {
                                         )
                                     }
                                     <div className="col-span-2 sm:col-span-1">
-                                        <img className="block mt-4 mx-auto h-[140px] sm:mt-0" src={`https://race-results-images.up.railway.app/api/circuits/${RaceTable?.Races[0].Circuit.circuitId}/image`} alt="" />
+                                        <img className="block mt-4 mx-auto h-[140px] sm:mt-0" src={`https://race-results-api.onrender.com/api/circuits/${RaceTable?.Races[0].Circuit.circuitId}/image`} alt="" />
                                     </div>
                                 </div>
                             </>

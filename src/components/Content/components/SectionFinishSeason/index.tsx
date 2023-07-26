@@ -38,7 +38,7 @@ export const SectionFinishSeason = ({ showSectionFinishSeason }: PropsSectionFin
                                         <Section title={`Congratulations ${value.Driver.givenName} ${value.Driver.familyName}`} content={
                                             <div className="grid grid-cols-2">
                                                 <div className="col-span-1">
-                                                    <img className="mt-4 h-28 w-28 sm:h-32 sm:w-32 m-auto rounded-full" src={`https://race-results-images.up.railway.app/api/drivers/${value.Driver.driverId}/image`} alt={`Foto de ${value.Driver.driverId}`} />
+                                                    <img className="mt-4 h-28 w-28 sm:h-32 sm:w-32 m-auto rounded-full" src={`https://race-results-api.onrender.com/api/drivers/${value.Driver.driverId}/image`} alt={`Foto de ${value.Driver.driverId}`} />
                                                 </div>
                                                 <div className="col-span-1 flex flex-col justify-center">
                                                     <div className="block text-lg">Points: {stateInfoDriverChampion.points}</div>
@@ -70,7 +70,7 @@ export const SectionFinishSeason = ({ showSectionFinishSeason }: PropsSectionFin
                                             <Section title={`Congratulations ${value.Constructor.name}`} content={
                                                 <div className="grid grid-cols-3">
                                                     <div className="col-span-2">
-                                                        <img className="mt-4 h-24 sm:h-32 m-auto" src={require(`./../../../../assets/img/constructors/${value.Constructor.constructorId}.png`)} alt={`Foto de ${value.Constructor.constructorId}`} />
+                                                        <img className="mt-4 h-24 sm:h-32 m-auto" src={`https://race-results-api.onrender.com/api/teams/${value.Constructor.constructorId}/image/miniImage/dark`} alt={`Foto de ${value.Constructor.constructorId}`} />
                                                     </div>
                                                     <div className="col-span-1 flex flex-col justify-center">
                                                         <div className="block mt-2 text-lg">Races Won: {value.wins}</div>

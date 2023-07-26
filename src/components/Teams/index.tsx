@@ -95,8 +95,8 @@ export const Teams = () => {
                                                                             <div className="inline-block">
                                                                                 {value.name || 'Not Name'}
                                                                             </div>
-                                                                                <img className="ml-4 mx-auto h-5 hidden dark:inline-block" src={`http://localhost:5000/api/teams/${value.constructorId}/image/miniImage/dark`} alt="" />
-                                                                                <img className="ml-4 mx-auto h-5 inline-block dark:hidden" src={`http://localhost:5000/api/teams/${value.constructorId}/image/miniImage/light`} alt="" />
+                                                                                <img className="ml-4 mx-auto h-5 hidden dark:inline-block" src={`https://race-results-api.onrender.com/api/teams/${value.constructorId}/image/miniImage/dark`} alt="" />
+                                                                                <img className="ml-4 mx-auto h-5 inline-block dark:hidden" src={`https://race-results-api.onrender.com/api/teams/${value.constructorId}/image/miniImage/light`} alt="" />
                                                                             {/* <div className="inline-block">
                                                                             </div> */}
                                                                         </td>
