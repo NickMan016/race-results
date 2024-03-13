@@ -1,16 +1,19 @@
-import { CountriesProvider } from './context/CountriesDB/CountriesProvider';
-import { F1Provider } from './context/F1DB/F1Provider';
-import { Router } from './routes';
-import './assets/css/index.css';
-import './index.css'
+import { Provider } from 'react-redux';
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
 
-function App() {
+import { store } from './redux';
+import { AppLayout } from './layouts/AppLayout';
+
+let persistor = persistStore(store);
+
+function App() {  
   return (
-    <CountriesProvider>
-      <F1Provider>
-        <Router />
-      </F1Provider>
-    </CountriesProvider>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <AppLayout />
+      </PersistGate>
+    </Provider>
   );
 }
 
