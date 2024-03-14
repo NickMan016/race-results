@@ -7,7 +7,15 @@ import {
   selectActivePage,
   useLazyGetCurrentSeasonQuery,
 } from "../redux";
-import { ConstructorPage, ConstructorsPage, DriverPage, DriversPage, HomePage, SchedulePage } from "../pages";
+import {
+  AboutRacePage,
+  ConstructorPage,
+  ConstructorsPage,
+  DriverPage,
+  DriversPage,
+  HomePage,
+  SchedulePage,
+} from "../pages";
 import { useEffect } from "react";
 
 export const AppLayout = () => {
@@ -33,6 +41,7 @@ export const AppLayout = () => {
         {activePage === "teams" && <ConstructorsPage />}
         {activePage === "team" && <ConstructorPage />}
         {activePage === "schedule" && <SchedulePage />}
+        {activePage === "race" && <AboutRacePage />}
       </div>
     </>
   );

@@ -4,3 +4,4 @@ export * from './DriverPage';
 export * from './ConstructorsPage';
 export * from './ConstructorPage';
 export * from './SchedulePage';
+export * from './AboutRacePage';

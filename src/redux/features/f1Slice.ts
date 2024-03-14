@@ -344,6 +344,7 @@ export const selectDriverSelected = (state: RootState) =>
   state.f1.driverSelected;
 export const selectConstructorSelected = (state: RootState) =>
   state.f1.constructorSelected;
+export const selectRaceSelected = (state: RootState) => state.f1.raceSelected;
 export const selectRaces = (state: RootState) => state.f1.races;
 export const selectRace = (state: RootState) => state.f1.race;
 export const selectDriverStanding = (state: RootState) =>
