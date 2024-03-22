@@ -23,6 +23,9 @@ export const f1Api = createApi({
     getResults: builder.query({
       query: ({ season, race }: GetRaceProps) => `${season}/${race}/results.json`,
     }),
+    getResultsQualifying: builder.query({
+      query: ({ season, race }: GetRaceProps) => `${season}/${race}/qualifying.json`,
+    }),
     getDrivers: builder.query({
       query: ({ season, constructor }: GetDriverProps) => `${season}${constructor !== '0' ? `/constructors/${constructor}` : ''}/drivers.json`,
     }),
@@ -57,6 +60,7 @@ export const {
   useLazyGetDriversQuery,
   useLazyGetConstructorsQuery,
   useLazyGetResultsQuery,
+  useLazyGetResultsQualifyingQuery,
   useLazyGetDriverSeasonsQuery,
   useLazyGetDriverResultsQuery,
   useLazyGetDriverChampionshipsQuery,
