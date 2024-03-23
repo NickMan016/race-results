@@ -12,8 +12,6 @@ export const ContentFormatDate = ({
   time,
 }: ContentFormatDateProps) => {
   const fecha = moment(`${date}T${time !== undefined ? time : '23:59:00Z'}`);
-  console.log(time);
-  
 
   return (
     <div className="flex items-center space-x-2">
