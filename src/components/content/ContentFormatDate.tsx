@@ -12,6 +12,8 @@ export const ContentFormatDate = ({
   time,
 }: ContentFormatDateProps) => {
   const fecha = moment(`${date}T${time !== undefined ? time : '23:59:00Z'}`);
+  console.log(time);
+  
 
   return (
     <div className="flex items-center space-x-2">
@@ -27,7 +29,7 @@ export const ContentFormatDate = ({
       <div className="flex flex-col justify-between justify-items-center">
         {time !== undefined && (
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            {fecha.format("hh:mm [hrs]")}
+            {fecha.format("HH:mm [hrs]")}
           </p>
         )}
         <h2 className="text-lg leading-none font-semibold">{title}</h2>
