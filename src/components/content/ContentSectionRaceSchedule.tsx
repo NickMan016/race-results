@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 
 interface ContentSectionRaceScheduleProps {
-  race: Race
+  race: Race;
 }
 
 export const ContentSectionRaceSchedule = ({
@@ -33,26 +33,38 @@ export const ContentSectionRaceSchedule = ({
       if (data.length > 1) {
         for (let index = 0; index < data.length; index++) {
           const element = data[index];
-          if (element.name.common === race.Circuit.Location.country || element.altSpellings.includes(race.Circuit.Location.country)) {
-              setFlagUrl(element.flags.svg);
-              break;
+          if (
+            element.name.common === race.Circuit.Location.country ||
+            element.altSpellings.includes(race.Circuit.Location.country)
+          ) {
+            setFlagUrl(element.flags.svg);
+            break;
           }
         }
       } else {
         setFlagUrl(data[0].flags.svg);
       }
     }
-  }, [data]);
-  
+  }, [data, race.Circuit.Location.country]);
+
   return (
     <div className="col-span-6 xl:col-span-2">
-      <ContentSection title={`${race.raceName.length <= 20 ? race.raceName : `${race.raceName.slice(0, 20)}...`}`} schedule>
+      <ContentSection
+        title={`${
+          race.raceName.length <= 20
+            ? race.raceName
+            : `${race.raceName.slice(0, 20)}...`
+        }`}
+        schedule
+      >
         <div className="col-span-1 flex justify-end">
-          <img
-            className="inline-block h-6 drop-shadow-flag dark:drop-shadow-flag-dark"
-            src={flagUrl}
-            alt="flag"
-          />
+          {flagUrl !== "" && (
+            <img
+              className="inline-block h-6 drop-shadow-flag dark:drop-shadow-flag-dark"
+              src={flagUrl}
+              alt="flag"
+            />
+          )}
         </div>
         <div className="col-span-2">
           <div className="flex items-center justify-start space-x-4">

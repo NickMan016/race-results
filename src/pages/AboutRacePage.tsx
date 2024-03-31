@@ -32,7 +32,7 @@ const headTableQualifying: HeadTable[] = [
   { text: "Pos.", center: true },
   { text: "Driver", center: false },
   { text: "Team", center: false },
-  { text: "Q1", center: false },
+  { text: "Q1", center: true },
   { text: "Q2", center: true },
   { text: "Q3", center: true },
 ];
