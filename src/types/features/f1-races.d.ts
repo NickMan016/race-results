@@ -131,6 +131,30 @@ export interface Result {
   FastestLap: FastestLap;
 }
 
+export interface Result {
+  number: string;
+  position: string;
+  positionText: string;
+  points: string;
+  Driver: Driver;
+  Constructor: Constructor;
+  grid: string;
+  laps: string;
+  status: string;
+  Time: Time;
+  FastestLap: FastestLap;
+}
+
+export interface Qualifying {
+  number: string;
+  position: string;
+  Driver: Driver;
+  Constructor: Constructor;
+  Q1: string
+  Q2?: string
+  Q3?: string
+}
+
 export interface Time {
   millis: string;
   time: string;
@@ -157,6 +181,10 @@ export interface RaceResults extends Race {
   Results: Result[];
 }
 
+export interface QualifyingResults extends Race {
+  QualifyingResults: Qualifying[];
+}
+
 export interface SeasonsApiResponse extends MRDataBaseResponse {
   SeasonTable: SeasonTable;
 }
@@ -165,7 +193,7 @@ export interface RacesApiResponse extends MRDataBaseResponse {
   RaceTable: RaceTable;
 }
 
-export interface RacesApiResponse extends MRDataBaseResponse {
+export interface QualifyingApiResponse extends MRDataBaseResponse {
   RaceTable: RaceTable;
 }
 

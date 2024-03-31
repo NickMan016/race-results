@@ -34,7 +34,7 @@ export const ContentSectionRaceScheduleFinished = ({
         setFlagUrl(data[0].flags.svg);
       }
     }
-  }, [data]);
+  }, [data, race.Circuit.Location.country]);
 
   return (
     <div className="col-span-6 xl:col-span-3">
@@ -58,7 +58,7 @@ export const ContentSectionRaceScheduleFinished = ({
             </div>
           </div>
         </div>
-        <div className="col-span-1 flex items-end">
+        <div className="col-span-3 mt-1 flex items-end sm:col-span-1 sm:mt-0">
           <button
             onClick={() => {
               dispatch(changeRaceSelected(race));

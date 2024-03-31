@@ -18,6 +18,8 @@ import {
   Constructor,
   Season,
   StandingsList,
+  QualifyingApiResponse,
+  QualifyingResults,
 } from "../../types";
 
 export interface racesState {
@@ -33,6 +35,7 @@ export interface racesState {
   constructorSelected: Constructor | undefined;
   raceSelected: Race | undefined;
   resultsRace: RaceResults;
+  qualifyingRace: QualifyingResults;
   driverSeasons: Season[];
   driverResults: RaceResults[];
   driverChampionships: StandingsList[];
@@ -45,6 +48,7 @@ export interface racesState {
   loadDrivers: boolean;
   loadConstructors: boolean;
   loadResults: boolean;
+  loadQualifying: boolean;
   loadDriverSeasons: boolean;
   loadDriverResults: boolean;
   loadDriverChampionships: boolean;
@@ -101,6 +105,26 @@ const initialState: racesState = {
     time: "",
     Results: [],
   },
+  qualifyingRace: {
+    QualifyingResults: [],
+    season: "",
+    round: "",
+    url: "",
+    raceName: "",
+    Circuit: {
+      circuitId: "",
+      url: "",
+      circuitName: "",
+      Location: {
+        lat: "",
+        long: "",
+        locality: "",
+        country: "",
+      },
+    },
+    date: "",
+    time: "",
+  },
   driverSeasons: [],
   driverResults: [],
   driverChampionships: [],
@@ -111,6 +135,7 @@ const initialState: racesState = {
   loadDriverStanding: false,
   loadConstructorStanding: false,
   loadResults: false,
+  loadQualifying: false,
   loadDrivers: false,
   loadConstructors: false,
   loadDriverSeasons: false,
@@ -227,6 +252,46 @@ export const f1Slice = createSlice({
           const results = data.RaceTable.Races[0] as RaceResults;
           state.loadResults = true;
           state.resultsRace = results;
+        }
+      )
+      .addMatcher(
+        f1Api.endpoints.getResultsQualifying.matchPending,
+        (state, _) => {
+          state.loadQualifying = false;
+        }
+      )
+      .addMatcher(
+        f1Api.endpoints.getResultsQualifying.matchFulfilled,
+        (state, action: PayloadAction<F1APIBaseResponse>) => {
+          const data = action.payload.MRData as QualifyingApiResponse;
+          if (data.RaceTable.Races.length === 0) {
+            state.loadQualifying = true;
+            state.qualifyingRace = {
+              season: "",
+              round: "",
+              url: "",
+              raceName: "",
+              Circuit: {
+                circuitId: "",
+                url: "",
+                circuitName: "",
+                Location: {
+                  lat: "",
+                  long: "",
+                  locality: "",
+                  country: "",
+                },
+              },
+              date: "",
+              time: "",
+              QualifyingResults: [],
+            };
+          } else {
+            const qualifyingResults = data.RaceTable
+              .Races[0] as QualifyingResults;
+            state.loadQualifying = true;
+            state.qualifyingRace = qualifyingResults;
+          }
         }
       )
       .addMatcher(f1Api.endpoints.getDrivers.matchPending, (state, _) => {
@@ -354,6 +419,8 @@ export const selectConstructorStanding = (state: RootState) =>
 export const selectDrivers = (state: RootState) => state.f1.drivers;
 export const selectConstructors = (state: RootState) => state.f1.constructors;
 export const selectResultsRace = (state: RootState) => state.f1.resultsRace;
+export const selectQualifyingRace = (state: RootState) =>
+  state.f1.qualifyingRace;
 export const selectDriverSeasons = (state: RootState) => state.f1.driverSeasons;
 export const selectDriverResults = (state: RootState) => state.f1.driverResults;
 export const selectDriverChampionships = (state: RootState) =>
@@ -373,6 +440,7 @@ export const selectLoadContent = createSelector(
     loadDrivers: f1.loadDrivers,
     loadConstructors: f1.loadConstructors,
     loadResults: f1.loadResults,
+    loadQualifying: f1.loadQualifying,
     loadDriverSeasons: f1.loadDriverSeasons,
     loadDriverResults: f1.loadDriverResults,
     loadDriverChampionships: f1.loadDriverChampionships,

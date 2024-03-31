@@ -7,5 +7,6 @@ export * from './ContentFormatDate';
 export * from './ContentSectionDriverStanding';
 export * from './ContentSectionConstructorStanding';
 export * from './ContentSectionResultsRace';
+export * from './ContentSectionResultsQualifying';
 export * from './ContentSectionFlags';
 export * from './ContentSectionLoading';

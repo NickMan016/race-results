@@ -2,15 +2,16 @@ import { useSelector } from "react-redux";
 import {
   ContentSection,
   ContentSectionLoading,
-  ContentSectionWithoutTitle,
   HeadTable,
   TableData,
 } from "../components";
 import {
   selectLoadContent,
+  selectQualifyingRace,
   selectRaceSelected,
   selectResultsRace,
   useGetFlagsByCountryQuery,
+  useLazyGetResultsQualifyingQuery,
   useLazyGetResultsQuery,
 } from "../redux";
 import { useEffect, useState } from "react";
@@ -25,6 +26,15 @@ const headTable: HeadTable[] = [
   { text: "Time", center: false },
   { text: "Status", center: true },
   { text: "Points", center: true },
+];
+
+const headTableQualifying: HeadTable[] = [
+  { text: "Pos.", center: true },
+  { text: "Driver", center: false },
+  { text: "Team", center: false },
+  { text: "Q1", center: true },
+  { text: "Q2", center: true },
+  { text: "Q3", center: true },
 ];
 
 const allowedStatus = [
@@ -43,18 +53,21 @@ const allowedStatus = [
 export const AboutRacePage = () => {
   const race = useSelector(selectRaceSelected);
   const raceResults = useSelector(selectResultsRace);
-  const { loadResults } = useSelector(selectLoadContent);
+  const raceQualifying = useSelector(selectQualifyingRace);
+  const { loadResults, loadQualifying } = useSelector(selectLoadContent);
   const [flagUrl, setFlagUrl] = useState("");
   const { data } = useGetFlagsByCountryQuery(
     race?.Circuit.Location.country || ""
   ) as CountriesAPIBaseResponse;
   const [getResults] = useLazyGetResultsQuery();
+  const [getQualifying] = useLazyGetResultsQualifyingQuery();
 
   useEffect(() => {
     if (race !== undefined) {
       getResults({ season: race.season, race: race.round });
+      getQualifying({ season: race.season, race: race.round });
     }
-  }, [getResults]);
+  }, [race, getResults, getQualifying]);
 
   useEffect(() => {
     if (data !== undefined && race !== undefined) {
@@ -73,7 +86,7 @@ export const AboutRacePage = () => {
         setFlagUrl(data[0].flags.svg);
       }
     }
-  }, [data]);
+  }, [data, race]);
 
   return (
     <div className="grid grid-cols-6 gap-0 lg:gap-5">
@@ -192,6 +205,42 @@ export const AboutRacePage = () => {
                             </>
                           )}
                           {indexHead === 5 && value.points}
+                        </td>
+                      ))}
+                    </tr>
+                  );
+                })}
+              </TableData>
+            </div>
+          </ContentSection>
+        )}
+
+        {!loadQualifying ? (
+          <ContentSectionLoading />
+        ) : (
+          <ContentSection title="Qualifying">
+            <div className="col-span-2 mt-2">
+              <TableData headTable={headTableQualifying}>
+                {raceQualifying.QualifyingResults.map((value, index) => {
+                  return (
+                    <tr
+                      className="border-gray-700 border-b-[1px] hover:bg-gray-300 dark:border-gray-500 dark:hover:bg-gray-700"
+                      key={index}
+                    >
+                      {headTableQualifying.map((item, indexHead) => (
+                        <td
+                          className={`p-2 text-sm ${
+                            item.center && "text-center"
+                          }`}
+                          key={indexHead}
+                        >
+                          {indexHead === 0 && value.position}
+                          {indexHead === 1 &&
+                            `${value.Driver.givenName} ${value.Driver.familyName}`}
+                          {indexHead === 2 && value.Constructor.name}
+                          {indexHead === 3 && (value.Q1 || "No Time")}
+                          {indexHead === 4 && (value.Q2 || "No Time")}
+                          {indexHead === 5 && (value.Q3 || "No Time")}
                         </td>
                       ))}
                     </tr>

@@ -52,7 +52,7 @@ export const ContentSectionResultsRace = () => {
       {!loadResults ? (
         <ContentSectionLoading />
       ) : (
-        <ContentSection title={raceResults.raceName}>
+        <ContentSection title={`${raceResults.raceName} Result`}>
           <div className="col-span-2 sm:col-span-1">
             <div className="flex items-center justify-end space-x-4">
               <div>
