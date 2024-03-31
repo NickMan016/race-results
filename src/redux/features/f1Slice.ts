@@ -123,7 +123,7 @@ const initialState: racesState = {
       },
     },
     date: "",
-    time: ""
+    time: "",
   },
   driverSeasons: [],
   driverResults: [],
@@ -254,16 +254,44 @@ export const f1Slice = createSlice({
           state.resultsRace = results;
         }
       )
-      .addMatcher(f1Api.endpoints.getResultsQualifying.matchPending, (state, _) => {
-        state.loadQualifying = false;
-      })
+      .addMatcher(
+        f1Api.endpoints.getResultsQualifying.matchPending,
+        (state, _) => {
+          state.loadQualifying = false;
+        }
+      )
       .addMatcher(
         f1Api.endpoints.getResultsQualifying.matchFulfilled,
         (state, action: PayloadAction<F1APIBaseResponse>) => {
           const data = action.payload.MRData as QualifyingApiResponse;
-          const qualifyingResults = data.RaceTable.Races[0] as QualifyingResults;
-          state.loadQualifying = true;
-          state.qualifyingRace = qualifyingResults;
+          if (data.RaceTable.Races.length === 0) {
+            state.loadQualifying = true;
+            state.qualifyingRace = {
+              season: "",
+              round: "",
+              url: "",
+              raceName: "",
+              Circuit: {
+                circuitId: "",
+                url: "",
+                circuitName: "",
+                Location: {
+                  lat: "",
+                  long: "",
+                  locality: "",
+                  country: "",
+                },
+              },
+              date: "",
+              time: "",
+              QualifyingResults: [],
+            };
+          } else {
+            const qualifyingResults = data.RaceTable
+              .Races[0] as QualifyingResults;
+            state.loadQualifying = true;
+            state.qualifyingRace = qualifyingResults;
+          }
         }
       )
       .addMatcher(f1Api.endpoints.getDrivers.matchPending, (state, _) => {
@@ -391,7 +419,8 @@ export const selectConstructorStanding = (state: RootState) =>
 export const selectDrivers = (state: RootState) => state.f1.drivers;
 export const selectConstructors = (state: RootState) => state.f1.constructors;
 export const selectResultsRace = (state: RootState) => state.f1.resultsRace;
-export const selectQualifyingRace = (state: RootState) => state.f1.qualifyingRace;
+export const selectQualifyingRace = (state: RootState) =>
+  state.f1.qualifyingRace;
 export const selectDriverSeasons = (state: RootState) => state.f1.driverSeasons;
 export const selectDriverResults = (state: RootState) => state.f1.driverResults;
 export const selectDriverChampionships = (state: RootState) =>
