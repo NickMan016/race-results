@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 
 import {
+  selectQualifyingRace,
   useLazyGetConstructorStandingsQuery,
   useLazyGetDriverStandingsQuery,
   useLazyGetRaceQuery,
   useLazyGetRacesQuery,
+  useLazyGetResultsQualifyingQuery,
   useLazyGetResultsQuery,
 } from "../redux";
 import {
@@ -12,15 +14,19 @@ import {
   ContentSectionDriverStanding,
   ContentSectionFlags,
   ContentSectionRace,
+  ContentSectionResultsQualifying,
   ContentSectionResultsRace,
 } from "../components/content";
+import { useSelector } from "react-redux";
 
 export const HomePage = () => {
   const [getRaces] = useLazyGetRacesQuery();
   const [getRace] = useLazyGetRaceQuery();
   const [getDriverStanding] = useLazyGetDriverStandingsQuery();
   const [getConstructorStanding] = useLazyGetConstructorStandingsQuery();
+  const [getQualifying] = useLazyGetResultsQualifyingQuery();
   const [getResults] = useLazyGetResultsQuery();
+  const raceQualifying = useSelector(selectQualifyingRace);
 
   useEffect(() => {
     getRaces("current");
@@ -42,16 +48,25 @@ export const HomePage = () => {
     getResults({ season: "current", race: "last" });
   }, [getResults]);
 
-  // useEffect(() => {
-  //     console.log('races', results);
+  useEffect(() => {
+    getQualifying({ season: "current", race: "next" });
+  }, [getQualifying]);
 
-  // }, [results])
+  // useEffect(() => {
+  //     console.log('races', raceQualifying);
+
+  // }, [raceQualifying])
 
   return (
     <div className="grid grid-cols-6 gap-0 lg:gap-5">
       <div className="col-span-6 xl:col-span-4">
         <ContentSectionRace />
-        <ContentSectionResultsRace />
+        {raceQualifying.QualifyingResults.length === 0 ? (
+          <ContentSectionResultsRace />
+        ) : (
+          <ContentSectionResultsQualifying />
+        )}
+
         <ContentSectionFlags />
       </div>
       <div className="col-span-6 xl:col-span-2">
