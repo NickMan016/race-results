@@ -18,7 +18,7 @@ export const ContentSectionConstructorStanding = () => {
           {!loadConstructorStanding ? (
             <ContentSectionLoading />
           ) : (
-            <ContentSection title="Constructor Championship">
+            <ContentSection title="Constructor Championship" fullTile>
               <div className="mt-2 col-span-2">
                 <TableData headTable={headTable}>
                   {constructorStanding.map((value, index) => {
