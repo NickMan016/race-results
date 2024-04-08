@@ -34,8 +34,23 @@ export const ContentSectionRace = () => {
   }, [raceFind, races]);
 
   useEffect(() => {
-    data !== undefined && setFlagUrl(data[0].flags.svg);
-  }, [data]);
+    if (data !== undefined) {
+      if (data.length > 1) {
+        for (let index = 0; index < data.length; index++) {
+          const element = data[index];
+          if (
+            element.name.common === raceFind.Circuit.Location.country ||
+            element.altSpellings.includes(raceFind.Circuit.Location.country)
+          ) {
+            setFlagUrl(element.flags.svg);
+            break;
+          }
+        }
+      } else {
+        setFlagUrl(data[0].flags.svg);
+      }
+    }
+  }, [data, raceFind.Circuit.Location.country]);
 
   return (
     <>
