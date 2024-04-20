@@ -20,7 +20,7 @@ export const ContentSectionDriverStanding = () => {
       {!loadDriverStanding ? (
         <ContentSectionLoading />
       ) : (
-        <ContentSection title="Driver Championship">
+        <ContentSection title="Driver Championship" fullTile>
           <div className="mt-2 col-span-2">
             <TableData headTable={headTable}>
               {driverStanding.map((value, index) => {

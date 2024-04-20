@@ -18,7 +18,7 @@ export const Header = () => {
     { name: "Teams", route: "teams" },
     // { name: "Circuits", route: "circuits" },
     { name: "Schedule", route: "schedule" },
-    { name: "Archive", route: "archive" },
+    // { name: "Archive", route: "archive" },
   ];
 
   const goHome = () => {

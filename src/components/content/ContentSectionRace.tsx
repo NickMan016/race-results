@@ -29,13 +29,28 @@ export const ContentSectionRace = () => {
       return race.Circuit.circuitId === raceFind.Circuit.circuitId;
     });
     setRace(race);
-    // console.log(raceFind.FirstPractice);
+    // console.log(raceFind.ThirdPractice);
     // console.log(race);
   }, [raceFind, races]);
 
   useEffect(() => {
-    data !== undefined && setFlagUrl(data[0].flags.svg);
-  }, [data]);
+    if (data !== undefined) {
+      if (data.length > 1) {
+        for (let index = 0; index < data.length; index++) {
+          const element = data[index];
+          if (
+            element.name.common === raceFind.Circuit.Location.country ||
+            element.altSpellings.includes(raceFind.Circuit.Location.country)
+          ) {
+            setFlagUrl(element.flags.svg);
+            break;
+          }
+        }
+      } else {
+        setFlagUrl(data[0].flags.svg);
+      }
+    }
+  }, [data, raceFind.Circuit.Location.country]);
 
   return (
     <>
@@ -65,7 +80,10 @@ export const ContentSectionRace = () => {
             <div className="flex items-center justify-center">
               <div className="flex items-center space-x-4">
                 <div className="flex flex-col items-center">
-                  <FontAwesomeIcon icon={faCalendarXmark} className="text-[#EE0000] text-4xl" />
+                  <FontAwesomeIcon
+                    icon={faCalendarXmark}
+                    className="text-[#EE0000] text-4xl"
+                  />
                 </div>
 
                 <div className="flex flex-col justify-between justify-items-center">
@@ -102,14 +120,26 @@ export const ContentSectionRace = () => {
                   }
                 />
                 <ContentFormatDate
-                  title="Practice 3"
+                  title={
+                    raceFind.ThirdPractice === undefined
+                      ? "Sprint"
+                      : "Practice 3"
+                  }
                   date={
-                    raceFind.ThirdPractice?.date !== undefined
+                    raceFind.ThirdPractice === undefined
+                      ? raceFind.Sprint?.date !== undefined
+                        ? raceFind.Sprint?.date
+                        : race?.Sprint?.date
+                      : raceFind.ThirdPractice?.date !== undefined
                       ? raceFind.ThirdPractice?.date
                       : race?.ThirdPractice?.date
                   }
                   time={
-                    raceFind.ThirdPractice?.time !== undefined
+                    raceFind.ThirdPractice === undefined
+                      ? raceFind.Sprint?.time !== undefined
+                        ? raceFind.Sprint?.time
+                        : race?.Sprint?.time
+                      : raceFind.ThirdPractice?.time !== undefined
                       ? raceFind.ThirdPractice?.time
                       : race?.ThirdPractice?.time
                   }
@@ -118,7 +148,11 @@ export const ContentSectionRace = () => {
 
               <div className="flex flex-row justify-between space-x-8 space-y-2">
                 <ContentFormatDate
-                  title="Practice 2"
+                  title={
+                    raceFind.ThirdPractice === undefined
+                      ? "Sprint Qualifying"
+                      : "Practice 2"
+                  }
                   date={
                     raceFind.SecondPractice?.date !== undefined
                       ? raceFind.SecondPractice?.date
