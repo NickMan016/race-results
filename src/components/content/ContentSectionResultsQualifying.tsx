@@ -28,8 +28,25 @@ export const ContentSectionResultsQualifying = () => {
   ) as CountriesAPIBaseResponse;
 
   useEffect(() => {
-    data !== undefined && setFlagUrl(data[0].flags.svg);
-  }, [data]);
+    if (data !== undefined) {
+      if (data.length > 1) {
+        for (let index = 0; index < data.length; index++) {
+          const element = data[index];
+          if (
+            element.name.common === raceQualifying.Circuit.Location.country ||
+            element.altSpellings.includes(
+              raceQualifying.Circuit.Location.country
+            )
+          ) {
+            setFlagUrl(element.flags.svg);
+            break;
+          }
+        }
+      } else {
+        setFlagUrl(data[0].flags.svg);
+      }
+    }
+  }, [data, raceQualifying.Circuit.Location.country]);
 
   return (
     <>
@@ -69,13 +86,13 @@ export const ContentSectionResultsQualifying = () => {
                         }`}
                         key={indexHead}
                       >
-                      {indexHead === 0 && value.position}
-                      {indexHead === 1 &&
-                        `${value.Driver.givenName} ${value.Driver.familyName}`}
-                      {indexHead === 2 && value.Constructor.name}
-                      {indexHead === 3 && (value.Q1 || "No Time")}
-                      {indexHead === 4 && (value.Q2 || "No Time")}
-                      {indexHead === 5 && (value.Q3 || "No Time")}
+                        {indexHead === 0 && value.position}
+                        {indexHead === 1 &&
+                          `${value.Driver.givenName} ${value.Driver.familyName}`}
+                        {indexHead === 2 && value.Constructor.name}
+                        {indexHead === 3 && (value.Q1 || "No Time")}
+                        {indexHead === 4 && (value.Q2 || "No Time")}
+                        {indexHead === 5 && (value.Q3 || "No Time")}
                       </td>
                     ))}
                   </tr>
